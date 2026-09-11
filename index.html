@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Vanshika Turakhia | Creative Developer & Systems Engineer</title>
-<meta name="description" content="Creative frontend, Three.js experiences, observability, and performance-critical C++ systems. Available for clearly scoped freelance development."/>
+<title>Vanshika Turakhia | Systems · Databases · Observability</title>
+<meta name="description" content="C++ systems work: epoll HTTP server, vectorized query engine (12.7x over an iterator baseline), lock-free MPMC queue, arena allocator, LLM observability. Open source contributor to Valkey and KubeVela."/>
 <meta property="og:title" content="Vanshika Turakhia"/>
-<meta property="og:description" content="Creative development with serious engineering underneath. Interactive websites, Three.js, observability, and performance-critical systems."/>
+<meta property="og:description" content="Systems · Databases · Observability. C++ event loops, query execution, concurrency, and memory. Contributor to Valkey and KubeVela (CNCF)."/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://vanshika-portfolio-1zal.vercel.app/"/>
+<meta property="og:url" content="https://vanshika.dev"/>
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Vanshika Turakhia"/>
-<meta name="twitter:description" content="Creative Developer & Systems Engineer"/>
+<meta name="twitter:description" content="Systems · Databases · Observability"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -84,35 +84,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 #crt{animation:flicker 7s infinite}
 @keyframes glitch-title{0%{clip-path:inset(0 0 96% 0);transform:translateX(-5px)}15%{clip-path:inset(15% 0 55% 0);transform:translateX(5px)}30%{clip-path:inset(45% 0 25% 0);transform:translateX(-3px)}50%{clip-path:inset(75% 0 8% 0);transform:translateX(2px)}65%{clip-path:inset(0 0 0 0);transform:translateX(0)}100%{clip-path:inset(0 0 0 0);transform:translateX(0)}}
 .glitch-in{animation:glitch-title .3s steps(1) forwards}
-@media (max-width:600px){
-  nav{padding:18px 16px;align-items:flex-start}
-  #nav-name{font-size:8px;letter-spacing:.14em;max-width:72px;line-height:1.5}
-  #nav-links{gap:10px}
-  .nav-link{font-size:8px;letter-spacing:.1em}
-  #hero{padding:0 20px}
-  #hero-kicker{font-size:8px;letter-spacing:.21em;line-height:1.7;max-width:340px;text-align:center;margin-bottom:14px}
-  #hero h1{font-size:clamp(44px,15vw,64px)}
-  #hero-tag{font-size:12px;line-height:1.55;margin-top:18px}
-  #hero-sub{font-size:9px;line-height:1.55;margin-top:10px}
-  .hero-actions{margin-top:22px;gap:8px}
-  .hero-action{font-size:8px;letter-spacing:.12em;padding:10px 12px}
-  #hero-scroll{bottom:24px;font-size:8px}
-  #scroll-track{right:14px}
-  #side-panel{width:100vw;right:-100vw}
-  #sp-inner{padding:26px 22px 34px}
-  #sp-title{font-size:34px}
-  #outro-inner{width:100vw;padding:84px 20px 40px;background:rgba(13,12,8,.97)}
-}
+@media (max-width:600px){nav{padding:20px}#nav-links{gap:14px}#side-panel{width:100vw;right:-100vw}#outro-inner{padding:40px 20px}}
 #hero-tag{max-width:min(640px,86vw);line-height:1.6;text-align:center}
 #hero-sub{margin-top:12px;font-size:12px;color:rgba(206,180,124,0.45);letter-spacing:.04em;font-weight:300;max-width:min(560px,86vw);text-align:center;line-height:1.6}
-.hero-actions{display:flex;gap:12px;margin-top:28px;pointer-events:auto}
-.hero-action{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#cf912d;text-decoration:none;padding:11px 18px;border:1px solid rgba(207,145,45,0.35);background:rgba(15,14,10,.4);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
-.hero-action:hover{background:rgba(207,145,45,.1);border-color:rgba(207,145,45,.75);color:#f7e2a8}
-.hero-action.primary{background:#cf912d;color:#0f0e0a;border-color:#cf912d}
-.hero-action.primary:hover{background:#f0cd8e;border-color:#f0cd8e}
-.availability{border:1px solid rgba(207,145,45,.28);padding:20px;margin-bottom:48px;background:rgba(207,145,45,.035)}
-.availability strong{display:block;color:#f0cd8e;font-size:17px;font-weight:500;margin-bottom:7px}
-.availability p{font-size:13.5px;color:rgba(224,202,158,.88);line-height:1.7}
 .outro-lede{font-size:13.5px;color:rgba(224,202,158,0.9);line-height:1.7;margin-bottom:16px}
 .outro-prose{font-size:13.5px;color:rgba(224,202,158,0.88);line-height:1.8;margin-bottom:14px}
 .sum-list,.scope{list-style:none;margin:0}
@@ -131,37 +105,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
   <div id="nav-links">
     <button class="nav-link" data-goto="0">Top</button>
     <button class="nav-link" data-goto="projects">Projects</button>
-    <button class="nav-link" data-goto="end">Work with me</button>
+    <button class="nav-link" data-goto="end">About</button>
   </div>
 </nav>
 <div id="hero">
-  <div id="hero-kicker">Creative Development · Systems · Observability</div>
+  <div id="hero-kicker">Systems · Databases · Observability</div>
   <h1>Vanshika<br/>Turakhia</h1>
-  <div id="hero-tag">I turn ambitious creative direction into fast, responsive digital experiences and build the systems underneath them.</div>
-  <div id="hero-sub">Three.js, motion, frontend, Shopify customisation, observability, and performance-critical C++.</div>
-  <div class="hero-actions">
-    <button class="hero-action primary" data-hero-goto="projects">Explore work</button>
-    <a class="hero-action" href="mailto:vanshikaturakhia@gmail.com?subject=Project%20inquiry">Start a project</a>
-  </div>
+  <div id="hero-tag">I build systems that move data quickly, stay correct under pressure, and explain what happened when they don't.</div>
+  <div id="hero-sub">CS student focused on C++, databases, concurrency, and backend infrastructure.</div>
   <div id="hero-scroll">scroll</div>
 </div>
 <div id="outro">
   <div id="outro-inner">
-    <div class="availability">
-      <strong>Available for focused freelance projects.</strong>
-      <p>I work directly with founders and behind the scenes with creative studios. Send me the design, deadline, and awkward technical bit. I can own the implementation from there.</p>
-    </div>
     <div class="outro-section">
       <div class="outro-label">The short version</div>
       <p class="outro-lede">I like building interactive things, but not everyone has time to explore a portfolio. Here is the short version:</p>
       <ul class="sum-list">
-        <li>I build expressive websites from creative direction, including motion, responsive implementation, and Three.js experiences.</li>
-        <li>I work with studios as a dependable development partner while they retain strategy, design, and the client relationship.</li>
-        <li>I also build C++ systems around event loops, concurrency, memory, and database execution.</li>
+        <li>I build C++ systems projects around event loops, concurrency, memory, and database execution.</li>
         <li>I have built a vectorized query engine that showed a 12.7x improvement over an iterator baseline on the same workload.</li>
         <li>I have built an observability prototype using Kafka, ClickHouse, FastAPI, and Grafana.</li>
         <li>I contribute to open source systems software including Valkey and KubeVela.</li>
-        <li>I take on clearly scoped frontend, Shopify, backend, data, integration, observability, and performance engagements.</li>
+        <li>I take on small, clearly scoped backend, data, integration, and reliability engagements.</li>
       </ul>
     </div>
     <div class="outro-section">
@@ -180,17 +144,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
     <div class="outro-section">
       <div class="outro-label">Paid Work</div>
       <div class="outro-item">
-        <h3>Creative Development Partner</h3>
-        <div class="meta">Independent studio collaboration · 2026</div>
-        <p>Selected by a brand studio to translate its creative direction into polished web experiences and support technically involved client work.</p>
-        <ul class="scope">
-          <li>responsive implementation from supplied designs</li>
-          <li>motion, transitions, and interaction details</li>
-          <li>custom website and Shopify development support</li>
-          <li>careful migration planning with SEO continuity</li>
-        </ul>
-      </div>
-      <div class="outro-item">
         <h3>Technical Architecture Engagement</h3>
         <div class="meta">Independent consulting · 2026</div>
         <p>Completed a paid Stage 1 architecture and compatibility assessment for an AI business-operations product.</p>
@@ -207,19 +160,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
     <div class="outro-section">
       <div class="outro-label">Competitive Programming</div>
       <div class="stat-row">
-        <div class="stat"><div class="num">1604</div><div class="lbl">CF max rating · Expert</div></div>
+        <div class="stat"><div class="num">1598</div><div class="lbl">CF max rating · Specialist</div></div>
         <div class="stat"><div class="num">300+</div><div class="lbl">Problems solved</div></div>
       </div>
     </div>
     <div class="outro-section">
       <div class="outro-label">About</div>
-      <p class="outro-prose">I'm Vanshika, a developer who cares equally about what an experience feels like and what makes it hold together. I enjoy translating strong visual direction into motion and interaction, then going deep on the engineering when the project demands it.</p>
-      <p class="outro-prose">My systems background means I do not treat performance, browser behaviour, data flow, or reliability as somebody else's problem. I like explicit scopes, honest communication, and shipping work that survives outside the mockup.</p>
+      <p class="outro-prose">I'm Vanshika, a CS student who likes the part of software where tradeoffs are real: concurrency, databases, systems performance, observability, and infrastructure.</p>
+      <p class="outro-prose">I learn best by building close to the metal, measuring behaviour, finding the failure mode, and then making the design simpler. I'm currently looking to grow through systems-oriented internships, open source, and carefully scoped engineering work.</p>
     </div>
     <div class="outro-section">
       <div class="outro-label">Stack</div>
-      <div class="skill-line"><span class="k">Creative</span><span class="v">Three.js · motion · responsive frontend · Shopify · design implementation</span></div>
-      <div class="skill-line"><span class="k">Languages</span><span class="v">C++20 · TypeScript · JavaScript · Python · Go · SQL</span></div>
+      <div class="skill-line"><span class="k">Languages</span><span class="v">C++20 · Go · Python · TypeScript · SQL</span></div>
       <div class="skill-line"><span class="k">Systems</span><span class="v">epoll · mmap · sendfile · std::atomic · ASan · TSan · perf</span></div>
       <div class="skill-line"><span class="k">Infra</span><span class="v">Kafka · ClickHouse · PostgreSQL · Redis · Docker · Grafana</span></div>
       <div class="skill-line"><span class="k">Also</span><span class="v">APIs · integrations · data ingestion · observability</span></div>
@@ -245,7 +197,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
     <div id="sp-divider"></div>
     <div id="sp-desc"></div>
     <div id="sp-tags"></div>
-    <a id="sp-link" href="#" target="_blank" rel="noopener">View project</a>
+    <a id="sp-link" href="#" target="_blank" rel="noopener">View source</a>
   </div>
 </div>
 <div id="crt"></div>
@@ -266,8 +218,6 @@ const PROJECTS=[
 {title:"Confess",sub:"Multi-tenant RAG platform",desc:"Isolated workspaces with per-tenant vector namespacing via pgvector. Full ingestion-to-retrieval pipeline with confidence-aware scoring, refusal-based answering, and automated knowledge-gap detection by clustering failed queries. BullMQ workers, Redis caching, full observability stack.",tags:["TypeScript","pgvector","Redis","BullMQ"],url:"https://github.com/vansvan17/confess"},
 {title:"MPMC Queue",sub:"Lock-free concurrent queue using atomic CAS",desc:"A multi-producer, multi-consumer queue based on the Michael and Scott algorithm. It uses atomic compare-and-swap, cooperative tail advancement, and cache-line padding to reduce false sharing.\n\nI used ThreadSanitizer and concurrent stress tests to reason about safety under contention rather than treating \"it didn't crash once\" as proof.",tags:["C++20","std::atomic","concurrency","ThreadSanitizer"],url:"https://github.com/vansvan17/lock-free-mpmc-queue"},
 {title:"Arena Allocator",sub:"First-fit allocator over mmap",desc:"A small allocator built over raw mmap memory, with free-list management, in-band metadata, boundary-tag coalescing, and bitwise block-state encoding.\n\nIt was an exercise in ownership, alignment, fragmentation, and the unglamorous invariants that make memory systems safe.",tags:["C++","mmap","memory management","low-level systems"],url:"https://github.com/vansvan17/allocator"},
-{title:"This Portfolio",sub:"A scroll-driven Three.js project archive",desc:"A custom WebGL portfolio built as a navigable spatial object. Scrolling moves the camera around a tower of project cards, while each project remains accessible through a focused detail panel and keyboard navigation.\n\nIt is an experiment in turning technical work into an experience with a distinct visual identity, while keeping the implementation lightweight enough to ship as a single page.",tags:["Three.js","WebGL","interaction","art direction"],url:"https://vanshika-portfolio-1zal.vercel.app/",cta:"View live"},
-{title:"Nysa & Armaan",sub:"Interactive luxury wedding story",desc:"A cinematic wedding website concept built as a guided digital experience rather than a conventional invitation. The piece uses an editorial visual system, a paced entrance, depth, motion, and interactive transitions to make the visitor feel as though they are entering the celebration.\n\nI developed the concept and implementation to show how strong art direction can become a responsive, immersive web experience without losing clarity or usability.",tags:["Three.js","creative development","motion","responsive"],url:"https://nysa-armaan-wedding.netlify.app/",cta:"Enter experience"},
 ];
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("canvas"),antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
@@ -337,10 +287,9 @@ let scrollY=0,targetScroll=0;
 window.addEventListener("wheel",e=>{targetScroll=Math.max(0,Math.min(MAX_SCROLL,targetScroll+e.deltaY*0.8))},{passive:true});let lastTY=0;
 window.addEventListener("touchstart",e=>{lastTY=e.touches[0].clientY});window.addEventListener("touchmove",e=>{const dy=lastTY-e.touches[0].clientY;lastTY=e.touches[0].clientY;targetScroll=Math.max(0,Math.min(MAX_SCROLL,targetScroll+dy*2))},{passive:true});
 document.querySelectorAll(".nav-link").forEach(btn=>{btn.addEventListener("click",()=>{const g=btn.dataset.goto;if(g==="0")targetScroll=0;else if(g==="projects")targetScroll=INTRO_END+10;else if(g==="end")targetScroll=MAX_SCROLL})});
-document.querySelectorAll("[data-hero-goto]").forEach(btn=>{btn.addEventListener("click",()=>{targetScroll=INTRO_END+10})});
 const cursorEl=document.getElementById("cursor"),mouse=new THREE.Vector2(-9,-9);
 window.addEventListener("mousemove",e=>{cursorEl.style.left=e.clientX+"px";cursorEl.style.top=e.clientY+"px";mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1});
-function openPanel(i){const p=PROJECTS[i];document.getElementById("sp-index").textContent=(i+1)+" of "+N;const titleEl=document.getElementById("sp-title");titleEl.textContent=p.title;titleEl.className="glitch-in";setTimeout(()=>titleEl.className="",350);document.getElementById("sp-sub").textContent=p.sub;document.getElementById("sp-desc").textContent=p.desc;document.getElementById("sp-tags").innerHTML=p.tags.map(t=>'<span class="sp-tag">'+t+"</span>").join("");const link=document.getElementById("sp-link");link.href=p.url;link.textContent=p.cta||"View source";document.getElementById("side-panel").classList.add("open")}
+function openPanel(i){const p=PROJECTS[i];document.getElementById("sp-index").textContent=(i+1)+" of "+N;const titleEl=document.getElementById("sp-title");titleEl.textContent=p.title;titleEl.className="glitch-in";setTimeout(()=>titleEl.className="",350);document.getElementById("sp-sub").textContent=p.sub;document.getElementById("sp-desc").textContent=p.desc;document.getElementById("sp-tags").innerHTML=p.tags.map(t=>'<span class="sp-tag">'+t+"</span>").join("");document.getElementById("sp-link").href=p.url;document.getElementById("side-panel").classList.add("open")}
 function closePanel(){document.getElementById("side-panel").classList.remove("open")}window.closePanel=closePanel;
 window.addEventListener("click",e=>{if(document.getElementById("side-panel").contains(e.target))return;if(e.target.closest("nav")||e.target.closest("#outro"))return;raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length)openPanel(hits[0].object.userData.projectIndex)});
 const raycaster=new THREE.Raycaster();

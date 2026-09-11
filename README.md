@@ -1,8 +1,8 @@
 # vanshika.dev
 
 Personal portfolio. A single self-contained HTML file: an interactive 3D tower
-built with Three.js, where scrolling spirals the camera down and around creative
-development, observability, and systems-engineering project cards.
+built with Three.js, where scrolling spirals the camera down and around six
+project cards.
 
 Live: https://vanshika-portfolio-gilt.vercel.app
 
