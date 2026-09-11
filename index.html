@@ -35,6 +35,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 #project-back{position:fixed;top:78px;left:40px;z-index:325;display:flex;align-items:center;gap:9px;padding:10px 14px;border:1px solid rgba(207,145,45,.42);background:rgba(15,14,10,.8);backdrop-filter:blur(12px);color:#f0cd8e;font-family:"Space Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .25s,transform .25s,background .2s,border-color .2s}
 #project-back.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
 #project-back:hover{background:rgba(207,145,45,.12);border-color:#cf912d}
+#mobile-project-card{display:none}
 #hero{position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;transition:opacity .6s;font-family:"Space Grotesk",sans-serif}
 #hero-kicker{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:rgba(207,145,45,0.6);margin-bottom:18px}
 #hero h1{font-size:clamp(48px,8vw,104px);font-weight:700;letter-spacing:-.03em;color:#f7e2a8;line-height:.95;text-align:center}
@@ -87,7 +88,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 #crt{animation:flicker 7s infinite}
 @keyframes glitch-title{0%{clip-path:inset(0 0 96% 0);transform:translateX(-5px)}15%{clip-path:inset(15% 0 55% 0);transform:translateX(5px)}30%{clip-path:inset(45% 0 25% 0);transform:translateX(-3px)}50%{clip-path:inset(75% 0 8% 0);transform:translateX(2px)}65%{clip-path:inset(0 0 0 0);transform:translateX(0)}100%{clip-path:inset(0 0 0 0);transform:translateX(0)}}
 .glitch-in{animation:glitch-title .3s steps(1) forwards}
-@media (max-width:600px){nav{padding:20px}#nav-links{gap:14px}#project-back{top:64px;left:20px;padding:9px 11px;font-size:8px}#side-panel{width:100vw;right:-100vw}#outro-inner{padding:40px 20px}}
+@media (max-width:600px){
+  nav{padding:18px 16px;align-items:flex-start}
+  #nav-name{font-size:8px;letter-spacing:.14em;max-width:72px;line-height:1.5}
+  #nav-links{gap:10px}
+  .nav-link{font-size:8px;letter-spacing:.1em}
+  #hero{padding:0 20px}
+  #hero-kicker{font-size:8px;letter-spacing:.2em;line-height:1.7;max-width:330px;text-align:center;margin-bottom:14px}
+  #hero h1{font-size:clamp(44px,15vw,64px)}
+  #hero-tag{font-size:12px;line-height:1.55;margin-top:18px}
+  #hero-sub{font-size:9px;line-height:1.55;margin-top:10px}
+  #hero-scroll{bottom:24px;font-size:8px}
+  #project-back{top:64px;left:16px;padding:9px 11px;font-size:8px}
+  #mobile-project-card{position:fixed;display:block;left:20px;right:20px;bottom:28px;z-index:320;padding:15px 16px;border:1px solid rgba(207,145,45,.48);background:rgba(12,11,8,.9);backdrop-filter:blur(16px);color:#f7e2a8;text-align:left;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s;font-family:"Space Grotesk",sans-serif}
+  #mobile-project-card.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  #mp-index{display:block;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#cf912d;margin-bottom:7px}
+  #mp-title{display:block;font-size:21px;line-height:1.1;margin-bottom:5px}
+  #mp-sub{display:block;font-size:11px;line-height:1.45;color:rgba(224,202,158,.7)}
+  #mp-open{display:block;margin-top:10px;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#cf912d}
+  #scroll-track{right:10px}
+  #side-panel{width:100vw;right:-100vw}
+  #sp-inner{padding:26px 22px 34px}
+  #sp-title{font-size:34px}
+  #outro-inner{width:100vw;padding:84px 20px 40px;background:rgba(13,12,8,.97)}
+}
 #hero-tag{max-width:min(640px,86vw);line-height:1.6;text-align:center}
 #hero-sub{margin-top:12px;font-size:12px;color:rgba(206,180,124,0.45);letter-spacing:.04em;font-weight:300;max-width:min(560px,86vw);text-align:center;line-height:1.6}
 .outro-lede{font-size:13.5px;color:rgba(224,202,158,0.9);line-height:1.7;margin-bottom:16px}
@@ -112,6 +136,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
   </div>
 </nav>
 <button id="project-back" class="portfolio-control" type="button" aria-label="Back to introduction" onclick="portfolioNavigate('top',event)">&larr; Back to intro</button>
+<button id="mobile-project-card" type="button" aria-label="Open current project">
+  <span id="mp-index"></span><strong id="mp-title"></strong><span id="mp-sub"></span><span id="mp-open">Tap for details &rarr;</span>
+</button>
 <div id="hero">
   <div id="hero-kicker">Systems · Databases · Observability</div>
   <h1>Vanshika<br/>Turakhia</h1>
@@ -293,6 +320,7 @@ window.addEventListener("touchstart",e=>{lastTY=e.touches[0].clientY});window.ad
 function portfolioNavigate(destination,event){if(event){event.preventDefault();event.stopPropagation()}closePanel();if(destination==="top")targetScroll=0;else if(destination==="projects")targetScroll=INTRO_END+10;else targetScroll=MAX_SCROLL}
 window.portfolioNavigate=portfolioNavigate;const projectBack=document.getElementById("project-back");
 const cursorEl=document.getElementById("cursor"),mouse=new THREE.Vector2(-9,-9);
+const mobileProjectCard=document.getElementById("mobile-project-card");let mobileProjectIndex=0;mobileProjectCard.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();openPanel(mobileProjectIndex)});
 window.addEventListener("mousemove",e=>{cursorEl.style.left=e.clientX+"px";cursorEl.style.top=e.clientY+"px";mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1});
 function openPanel(i){const p=PROJECTS[i];document.getElementById("sp-index").textContent=(i+1)+" of "+N;const titleEl=document.getElementById("sp-title");titleEl.textContent=p.title;titleEl.className="glitch-in";setTimeout(()=>titleEl.className="",350);document.getElementById("sp-sub").textContent=p.sub;document.getElementById("sp-desc").textContent=p.desc;document.getElementById("sp-tags").innerHTML=p.tags.map(t=>'<span class="sp-tag">'+t+"</span>").join("");document.getElementById("sp-link").href=p.url;document.getElementById("side-panel").classList.add("open")}
 function closePanel(){document.getElementById("side-panel").classList.remove("open")}window.closePanel=closePanel;document.getElementById("sp-back").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();closePanel()});
@@ -304,7 +332,7 @@ window.addEventListener("keydown",e=>{if(e.key==="Escape"){closePanel();return}c
 function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();scrollY+=(targetScroll-scrollY)*0.06;const heroT=Math.min(1,scrollY/INTRO_LEN),projT=Math.max(0,Math.min(1,(scrollY-INTRO_END)/PROJ_LEN)),outroT=Math.max(0,Math.min(1,(scrollY-PROJ_END)/OUTRO_LEN));heroEl.style.opacity=String(1-heroT);outroEl.style.opacity=String(outroT);outroEl.classList.toggle("visible",outroT>0.5);projectBack.classList.toggle("visible",scrollY>INTRO_END*.72&&outroT<.5);let camAngle,camRadius,camY,lookY;/* ORBIT0 is where the descent starts. Every phase is written to begin
    exactly where the previous one ended, so no frame ever jumps. */
 const ORBIT0=Math.PI/2+stairGroup.rotation.y;
-if(scrollY<=INTRO_END){const topY=STAIR_TOP+2,eh=ease(heroT);camAngle=0.1+(ORBIT0-0.1)*heroT*heroT*heroT;camRadius=9+9*eh;camY=topY-(topY-10)*eh;lookY=camY-(2-0.5*eh)}else if(scrollY<=PROJ_END){const cp=ease(projT);camAngle=ORBIT0+cp*Math.PI*2.0;camRadius=18-cp*2;camY=10-cp*(N*STEP_H*0.92);lookY=camY-1.5}else{const eo=ease(outroT);camAngle=ORBIT0+Math.PI*2.0+eo*0.4;camRadius=16+eo*6;camY=(10-N*STEP_H*0.92)+eo*8.856;lookY=camY-(1.5+1.5*eo)}camera.position.set(Math.sin(camAngle)*camRadius,camY,Math.cos(camAngle)*camRadius);camera.lookAt(0,lookY,0);if(outroT>0)camera.setViewOffset(innerWidth,innerHeight,-outroT*innerWidth*0.28,0,innerWidth,innerHeight);if(!REDUCED_MOTION){pillarGroup.rotation.y=t*0.025;stairGroup.rotation.y=t*0.025}const activeStep=Math.round(ease(projT)*(N-1)),inProjects=scrollY>INTRO_END&&scrollY<=PROJ_END;for(let i=0;i<N;i++){const d=document.getElementById("dot-"+i);if(d)d.className="scroll-dot"+(inProjects&&i===activeStep?" active":"")}raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length){const c=hits[0].object;if(hoveredCard!==c){if(hoveredCard)hoveredCard.material.opacity=0.04;hoveredCard=c}hoveredCard.material.opacity=0.11+Math.sin(t*4)*0.03;cursorEl.classList.add("hover")}else{if(hoveredCard){hoveredCard.material.opacity=0.04;hoveredCard=null}cursorEl.classList.remove("hover")}holoMeshes.forEach((mesh,i)=>{if(REDUCED_MOTION){mesh.material.opacity=0.95;return}mesh.userData.glitchTimer-=0.016;if(mesh.userData.glitchTimer<=0){mesh.userData.glitchTimer=2.5+Math.random()*7;mesh.userData.glitching=true;mesh.userData.glitchEnd=t+0.08+Math.random()*0.1}if(mesh.userData.glitching){if(t<mesh.userData.glitchEnd){mesh.position.x=mesh.userData.baseX+(Math.random()-0.5)*0.09;mesh.position.y=mesh.userData.baseY+(Math.random()-0.5)*0.05;mesh.material.opacity=0.72+Math.random()*0.28}else{mesh.userData.glitching=false;mesh.position.set(mesh.userData.baseX,mesh.userData.baseY,mesh.userData.baseZ);mesh.material.opacity=1.0}}else{mesh.material.opacity=0.93+Math.sin(t*1.6+i*2.1)*0.07}});holoBack.forEach((mesh,i)=>{mesh.material.opacity=REDUCED_MOTION?0.35:0.3+Math.sin(t*1.2+i*1.7)*0.07});renderer.render(scene,camera)}animate();
+if(scrollY<=INTRO_END){const topY=STAIR_TOP+2,eh=ease(heroT);camAngle=0.1+(ORBIT0-0.1)*heroT*heroT*heroT;camRadius=9+9*eh;camY=topY-(topY-10)*eh;lookY=camY-(2-0.5*eh)}else if(scrollY<=PROJ_END){const cp=ease(projT);camAngle=ORBIT0+cp*Math.PI*2.0;camRadius=18-cp*2;camY=10-cp*(N*STEP_H*0.92);lookY=camY-1.5}else{const eo=ease(outroT);camAngle=ORBIT0+Math.PI*2.0+eo*0.4;camRadius=16+eo*6;camY=(10-N*STEP_H*0.92)+eo*8.856;lookY=camY-(1.5+1.5*eo)}camera.position.set(Math.sin(camAngle)*camRadius,camY,Math.cos(camAngle)*camRadius);camera.lookAt(0,lookY,0);if(outroT>0)camera.setViewOffset(innerWidth,innerHeight,-outroT*innerWidth*0.28,0,innerWidth,innerHeight);if(!REDUCED_MOTION){pillarGroup.rotation.y=t*0.025;stairGroup.rotation.y=t*0.025}const activeStep=Math.round(ease(projT)*(N-1)),displayStep=N-1-activeStep,inProjects=scrollY>INTRO_END&&scrollY<=PROJ_END;mobileProjectCard.classList.toggle("visible",inProjects);if(inProjects&&(mobileProjectIndex!==displayStep||!document.getElementById("mp-title").textContent)){mobileProjectIndex=displayStep;const mp=PROJECTS[displayStep];document.getElementById("mp-index").textContent=(activeStep+1)+" of "+N;document.getElementById("mp-title").textContent=mp.title;document.getElementById("mp-sub").textContent=mp.sub}for(let i=0;i<N;i++){const d=document.getElementById("dot-"+i);if(d)d.className="scroll-dot"+(inProjects&&i===activeStep?" active":"")}raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length){const c=hits[0].object;if(hoveredCard!==c){if(hoveredCard)hoveredCard.material.opacity=0.04;hoveredCard=c}hoveredCard.material.opacity=0.11+Math.sin(t*4)*0.03;cursorEl.classList.add("hover")}else{if(hoveredCard){hoveredCard.material.opacity=0.04;hoveredCard=null}cursorEl.classList.remove("hover")}holoMeshes.forEach((mesh,i)=>{if(REDUCED_MOTION){mesh.material.opacity=0.95;return}mesh.userData.glitchTimer-=0.016;if(mesh.userData.glitchTimer<=0){mesh.userData.glitchTimer=2.5+Math.random()*7;mesh.userData.glitching=true;mesh.userData.glitchEnd=t+0.08+Math.random()*0.1}if(mesh.userData.glitching){if(t<mesh.userData.glitchEnd){mesh.position.x=mesh.userData.baseX+(Math.random()-0.5)*0.09;mesh.position.y=mesh.userData.baseY+(Math.random()-0.5)*0.05;mesh.material.opacity=0.72+Math.random()*0.28}else{mesh.userData.glitching=false;mesh.position.set(mesh.userData.baseX,mesh.userData.baseY,mesh.userData.baseZ);mesh.material.opacity=1.0}}else{mesh.material.opacity=0.93+Math.sin(t*1.6+i*2.1)*0.07}});holoBack.forEach((mesh,i)=>{mesh.material.opacity=REDUCED_MOTION?0.35:0.3+Math.sin(t*1.2+i*1.7)*0.07});renderer.render(scene,camera)}animate();
 </script>
 </body>
 </html>
