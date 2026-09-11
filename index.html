@@ -26,7 +26,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0f0e0a}
 #boot-cursor{display:inline-block;width:7px;height:13px;background:#cf912d;vertical-align:text-bottom;animation:bblink .8s step-end infinite}
 @keyframes bblink{0%,100%{opacity:1}50%{opacity:0}}
 @media (prefers-reduced-motion: reduce){#crt{animation:none}#hero-scroll{animation:none;opacity:.5}.glitch-in{animation:none}}
-nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:center;justify-content:space-between;padding:28px 40px;font-family:"Space Mono",monospace}
+nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:center;justify-content:space-between;padding:28px 40px;font-family:"Space Mono",monospace;pointer-events:auto}
 #nav-name{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(238,206,150,0.9)}
 #nav-links{display:flex;gap:28px}
 .nav-link{background:none;border:none;cursor:pointer;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(207,145,45,0.45);transition:color .2s;padding:4px 0}
@@ -106,12 +106,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 <nav>
   <div id="nav-name">Vanshika Turakhia</div>
   <div id="nav-links">
-    <button class="nav-link" data-goto="0">Top</button>
-    <button class="nav-link" data-goto="projects">Projects</button>
-    <button class="nav-link" data-goto="end">About</button>
+    <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('top',event)">Top</button>
+    <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('projects',event)">Projects</button>
+    <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('about',event)">About</button>
   </div>
 </nav>
-<button id="project-back" type="button" aria-label="Back to introduction">&larr; Back to intro</button>
+<button id="project-back" class="portfolio-control" type="button" aria-label="Back to introduction" onclick="portfolioNavigate('top',event)">&larr; Back to intro</button>
 <div id="hero">
   <div id="hero-kicker">Systems · Databases · Observability</div>
   <h1>Vanshika<br/>Turakhia</h1>
@@ -290,13 +290,13 @@ const INTRO_LEN=300,PROJ_LEN=(N-1)*220,OUTRO_LEN=300,INTRO_END=INTRO_LEN,PROJ_EN
 let scrollY=0,targetScroll=0;
 window.addEventListener("wheel",e=>{targetScroll=Math.max(0,Math.min(MAX_SCROLL,targetScroll+e.deltaY*0.8))},{passive:true});let lastTY=0;
 window.addEventListener("touchstart",e=>{lastTY=e.touches[0].clientY});window.addEventListener("touchmove",e=>{const dy=lastTY-e.touches[0].clientY;lastTY=e.touches[0].clientY;targetScroll=Math.max(0,Math.min(MAX_SCROLL,targetScroll+dy*2))},{passive:true});
-document.querySelectorAll(".nav-link").forEach(btn=>{btn.addEventListener("click",()=>{const g=btn.dataset.goto;if(g==="0")targetScroll=0;else if(g==="projects")targetScroll=INTRO_END+10;else if(g==="end")targetScroll=MAX_SCROLL})});
-const projectBack=document.getElementById("project-back");projectBack.addEventListener("click",()=>{closePanel();targetScroll=0});
+function portfolioNavigate(destination,event){if(event){event.preventDefault();event.stopPropagation()}closePanel();if(destination==="top")targetScroll=0;else if(destination==="projects")targetScroll=INTRO_END+10;else targetScroll=MAX_SCROLL}
+window.portfolioNavigate=portfolioNavigate;const projectBack=document.getElementById("project-back");
 const cursorEl=document.getElementById("cursor"),mouse=new THREE.Vector2(-9,-9);
 window.addEventListener("mousemove",e=>{cursorEl.style.left=e.clientX+"px";cursorEl.style.top=e.clientY+"px";mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1});
 function openPanel(i){const p=PROJECTS[i];document.getElementById("sp-index").textContent=(i+1)+" of "+N;const titleEl=document.getElementById("sp-title");titleEl.textContent=p.title;titleEl.className="glitch-in";setTimeout(()=>titleEl.className="",350);document.getElementById("sp-sub").textContent=p.sub;document.getElementById("sp-desc").textContent=p.desc;document.getElementById("sp-tags").innerHTML=p.tags.map(t=>'<span class="sp-tag">'+t+"</span>").join("");document.getElementById("sp-link").href=p.url;document.getElementById("side-panel").classList.add("open")}
 function closePanel(){document.getElementById("side-panel").classList.remove("open")}window.closePanel=closePanel;
-window.addEventListener("click",e=>{if(document.getElementById("side-panel").contains(e.target))return;if(e.target.closest("nav")||e.target.closest("#outro"))return;raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length)openPanel(hits[0].object.userData.projectIndex)});
+window.addEventListener("click",e=>{if(document.getElementById("side-panel").contains(e.target))return;if(e.target.closest(".portfolio-control")||e.target.closest("nav")||e.target.closest("#outro"))return;raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length)openPanel(hits[0].object.userData.projectIndex)});
 const raycaster=new THREE.Raycaster();
 window.addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 const heroEl=document.getElementById("hero"),outroEl=document.getElementById("outro"),clock=new THREE.Clock();let hoveredCard=null;
