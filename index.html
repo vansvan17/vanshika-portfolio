@@ -63,14 +63,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 #scroll-track{position:fixed;right:32px;top:50%;transform:translateY(-50%);z-index:320;display:flex;flex-direction:column;align-items:center;gap:6px}
 .scroll-dot{width:3px;height:3px;background:rgba(207,145,45,0.2);transition:background .3s,transform .3s}
 .scroll-dot.active{background:#cf912d;transform:scaleX(4)}
-#side-panel{position:fixed;top:0;right:-420px;width:380px;height:100vh;z-index:330;background:rgba(12,11,8,0.92);border-left:1px solid rgba(207,145,45,0.2);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);transition:right .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;font-family:"Space Grotesk",sans-serif;overflow:hidden}
+#side-panel{position:fixed;top:0;right:-420px;width:380px;height:100vh;z-index:360;background:rgba(12,11,8,0.92);border-left:1px solid rgba(207,145,45,0.2);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);transition:right .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;font-family:"Space Grotesk",sans-serif;overflow:hidden}
 #side-panel.open{right:0}
 #side-panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(207,145,45,0.018) 3px,rgba(207,145,45,0.018) 4px)}
 #side-panel::after{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(207,145,45,0.7),transparent)}
 #sp-inner{position:relative;z-index:1;padding:36px 32px 40px;height:100%;overflow-y:auto;display:flex;flex-direction:column}
 #sp-back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(207,145,45,0.45);padding:0;margin-bottom:40px;transition:color .2s;width:fit-content}
 #sp-back:hover{color:#cf912d}
-#sp-back::before{content:"back";font-size:10px;letter-spacing:.2em}
+#sp-back::before{content:"←";font-size:12px;letter-spacing:0}
 #sp-index{font-family:"Space Mono",monospace;font-size:10px;color:rgba(207,145,45,0.8);letter-spacing:.25em;margin-bottom:12px}
 #sp-title{font-size:40px;font-weight:700;color:#f0cd8e;letter-spacing:-.02em;line-height:1;margin-bottom:6px}
 #sp-sub{font-size:13px;color:rgba(206,180,124,0.85);letter-spacing:.04em;margin-bottom:28px}
@@ -194,7 +194,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 <div id="scroll-track"></div>
 <div id="side-panel">
   <div id="sp-inner">
-    <button id="sp-back" onclick="closePanel()"></button>
+    <button id="sp-back" type="button" aria-label="Close project details">Back</button>
     <div id="sp-index"></div>
     <div id="sp-title"></div>
     <div id="sp-sub"></div>
@@ -295,7 +295,7 @@ window.portfolioNavigate=portfolioNavigate;const projectBack=document.getElement
 const cursorEl=document.getElementById("cursor"),mouse=new THREE.Vector2(-9,-9);
 window.addEventListener("mousemove",e=>{cursorEl.style.left=e.clientX+"px";cursorEl.style.top=e.clientY+"px";mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1});
 function openPanel(i){const p=PROJECTS[i];document.getElementById("sp-index").textContent=(i+1)+" of "+N;const titleEl=document.getElementById("sp-title");titleEl.textContent=p.title;titleEl.className="glitch-in";setTimeout(()=>titleEl.className="",350);document.getElementById("sp-sub").textContent=p.sub;document.getElementById("sp-desc").textContent=p.desc;document.getElementById("sp-tags").innerHTML=p.tags.map(t=>'<span class="sp-tag">'+t+"</span>").join("");document.getElementById("sp-link").href=p.url;document.getElementById("side-panel").classList.add("open")}
-function closePanel(){document.getElementById("side-panel").classList.remove("open")}window.closePanel=closePanel;
+function closePanel(){document.getElementById("side-panel").classList.remove("open")}window.closePanel=closePanel;document.getElementById("sp-back").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();closePanel()});
 window.addEventListener("click",e=>{if(document.getElementById("side-panel").contains(e.target))return;if(e.target.closest(".portfolio-control")||e.target.closest("nav")||e.target.closest("#outro"))return;raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length)openPanel(hits[0].object.userData.projectIndex)});
 const raycaster=new THREE.Raycaster();
 window.addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
