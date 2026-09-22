@@ -12,76 +12,76 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Vanshika Turakhia"/>
 <meta name="twitter:description" content="Systems · Databases · Observability"/>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23070b12'/%3E%3Cpath d='M13 14l19 39 19-39M21 14l11 23 11-23' fill='none' stroke='%238dc6ff' stroke-width='5' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M8 55h48' stroke='%233f8cff' stroke-width='2'/%3E%3C/svg%3E"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230f1012'/%3E%3Cpath d='M13 14l19 39 19-39M21 14l11 23 11-23' fill='none' stroke='%23d2eaff' stroke-width='5' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M8 55h48' stroke='%2383c7ff' stroke-width='2'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#070b12}
+html,body{width:100%;height:100%;overflow:hidden;background:#0f1012}
 #canvas{position:fixed;inset:0;display:block}
-#cursor{position:fixed;width:8px;height:8px;background:#3f8cff;border-radius:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .12s,height .12s}
-#cursor.hover{width:36px;height:36px;background:rgba(63,140,255,0.08);border:1px solid rgba(63,140,255,0.55)}
-#boot{position:fixed;inset:0;z-index:500;background:#070b12;display:flex;align-items:center;justify-content:center;transition:opacity .4s}
+#cursor{position:fixed;width:8px;height:8px;background:#83c7ff;border-radius:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .12s,height .12s}
+#cursor.hover{width:36px;height:36px;background:rgba(131,199,255,0.08);border:1px solid rgba(131,199,255,0.55)}
+#boot{position:fixed;inset:0;z-index:500;background:#0f1012;display:flex;align-items:center;justify-content:center;transition:opacity .4s}
 #boot.done{opacity:0;pointer-events:none}
-#boot-text{font-family:"Space Mono",monospace;font-size:12px;line-height:2;color:rgba(63,140,255,0.8);min-width:280px}
-#boot-text .ok{color:rgba(141,198,255,1)}
-#boot-cursor{display:inline-block;width:7px;height:13px;background:#3f8cff;vertical-align:text-bottom;animation:bblink .8s step-end infinite}
+#boot-text{font-family:"Space Mono",monospace;font-size:12px;line-height:2;color:rgba(131,199,255,0.8);min-width:280px}
+#boot-text .ok{color:rgba(210,234,255,1)}
+#boot-cursor{display:inline-block;width:7px;height:13px;background:#83c7ff;vertical-align:text-bottom;animation:bblink .8s step-end infinite}
 @keyframes bblink{0%,100%{opacity:1}50%{opacity:0}}
 @media (prefers-reduced-motion: reduce){#crt{animation:none}#hero-scroll{animation:none;opacity:.5}.glitch-in{animation:none}}
 nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:center;justify-content:space-between;padding:28px 40px;font-family:"Space Mono",monospace;pointer-events:auto}
-#nav-name{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(207,230,255,0.9)}
+#nav-name{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(226,240,255,0.9)}
 #nav-links{display:flex;gap:28px}
-.nav-link{background:none;border:none;cursor:pointer;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(63,140,255,0.45);transition:color .2s;padding:4px 0}
-.nav-link:hover{color:#3f8cff}
-.nav-link.active{color:#cfe6ff;border-bottom:1px solid rgba(63,140,255,0.5)}
-#project-back{position:fixed;top:78px;left:40px;z-index:325;display:flex;align-items:center;gap:9px;padding:10px 14px;border:1px solid rgba(63,140,255,.42);background:rgba(7,11,18,.8);backdrop-filter:blur(12px);color:#cfe6ff;font-family:"Space Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .25s,transform .25s,background .2s,border-color .2s}
+.nav-link{background:none;border:none;cursor:pointer;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(131,199,255,0.45);transition:color .2s;padding:4px 0}
+.nav-link:hover{color:#83c7ff}
+.nav-link.active{color:#cfe6ff;border-bottom:1px solid rgba(131,199,255,0.5)}
+#project-back{position:fixed;top:78px;left:40px;z-index:325;display:flex;align-items:center;gap:9px;padding:10px 14px;border:1px solid rgba(131,199,255,.42);background:rgba(15,16,18,.8);backdrop-filter:blur(12px);color:#cfe6ff;font-family:"Space Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .25s,transform .25s,background .2s,border-color .2s}
 #project-back.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
-#project-back:hover{background:rgba(63,140,255,.12);border-color:#3f8cff}
+#project-back:hover{background:rgba(131,199,255,.12);border-color:#83c7ff}
 #mobile-project-card{display:none}
 #hero{position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;transition:opacity .6s;font-family:"Space Grotesk",sans-serif}
-#hero-kicker{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:rgba(63,140,255,0.6);margin-bottom:18px}
+#hero-kicker{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:rgba(131,199,255,0.6);margin-bottom:18px}
 #hero h1{font-size:clamp(48px,8vw,104px);font-weight:700;letter-spacing:-.03em;color:#e7f3ff;line-height:.95;text-align:center}
-#hero-tag{margin-top:22px;font-size:14px;color:rgba(174,206,238,0.6);letter-spacing:.06em;font-weight:300}
-#hero-scroll{position:absolute;bottom:44px;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(63,140,255,0.35);animation:pulse 2.4s ease-in-out infinite}
+#hero-tag{margin-top:22px;font-size:14px;color:rgba(190,218,245,0.6);letter-spacing:.06em;font-weight:300}
+#hero-scroll{position:absolute;bottom:44px;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:rgba(131,199,255,0.35);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.35}50%{opacity:.8}}
 #outro{position:fixed;inset:0;z-index:310;display:flex;align-items:stretch;justify-content:flex-start;pointer-events:none;opacity:0;transition:opacity .6s;font-family:"Space Grotesk",sans-serif}
 #outro.visible{pointer-events:auto}
-#outro-inner{width:min(620px,94vw);height:100%;overflow-y:auto;padding:110px 56px 60px;background:linear-gradient(90deg,rgba(6,10,16,0.985) 0%,rgba(6,10,16,0.96) 75%,rgba(6,10,16,0) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+#outro-inner{width:min(620px,94vw);height:100%;overflow-y:auto;padding:110px 56px 60px;background:linear-gradient(90deg,rgba(13,14,16,0.985) 0%,rgba(13,14,16,0.96) 75%,rgba(13,14,16,0) 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .outro-section{margin-bottom:48px}
-.outro-label{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(63,140,255,0.92);margin-bottom:18px}
-.outro-item{border-left:1px solid rgba(63,140,255,0.25);padding:4px 0 4px 20px;margin-bottom:22px}
+.outro-label{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(131,199,255,0.92);margin-bottom:18px}
+.outro-item{border-left:1px solid rgba(131,199,255,0.25);padding:4px 0 4px 20px;margin-bottom:22px}
 .outro-item h3{font-size:17px;font-weight:500;color:#cfe6ff;margin-bottom:4px;letter-spacing:.01em}
-.outro-item .meta{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;color:rgba(63,140,255,0.85);margin-bottom:8px;text-transform:uppercase}
-.outro-item p{font-size:13.5px;color:rgba(200,222,245,0.88);line-height:1.7}
+.outro-item .meta{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;color:rgba(131,199,255,0.85);margin-bottom:8px;text-transform:uppercase}
+.outro-item p{font-size:13.5px;color:rgba(218,233,248,0.88);line-height:1.7}
 .stat-row{display:flex;gap:36px;flex-wrap:wrap}
 .stat{padding:4px 0}
 .stat .num{font-size:34px;font-weight:700;color:#e7f3ff;letter-spacing:-.02em;font-family:"Space Grotesk",sans-serif}
-.stat .lbl{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(63,140,255,0.85);margin-top:4px}
+.stat .lbl{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(131,199,255,0.85);margin-top:4px}
 .skill-line{margin-bottom:10px;font-size:13px;line-height:1.7}
-.skill-line .k{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(63,140,255,0.92);margin-right:12px}
-.skill-line .v{color:rgba(200,222,245,0.88)}
+.skill-line .k{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(131,199,255,0.92);margin-right:12px}
+.skill-line .v{color:rgba(218,233,248,0.88)}
 #contact-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
-.contact-link{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#3f8cff;text-decoration:none;padding:11px 18px;border:1px solid rgba(63,140,255,0.35);transition:background .2s,border-color .2s}
-.contact-link:hover{background:rgba(63,140,255,0.08);border-color:rgba(63,140,255,0.7)}
+.contact-link{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#83c7ff;text-decoration:none;padding:11px 18px;border:1px solid rgba(131,199,255,0.35);transition:background .2s,border-color .2s}
+.contact-link:hover{background:rgba(131,199,255,0.08);border-color:rgba(131,199,255,0.7)}
 #scroll-track{position:fixed;right:32px;top:50%;transform:translateY(-50%);z-index:320;display:flex;flex-direction:column;align-items:center;gap:6px}
-.scroll-dot{width:3px;height:3px;background:rgba(63,140,255,0.2);transition:background .3s,transform .3s}
-.scroll-dot.active{background:#3f8cff;transform:scaleX(4)}
-#side-panel{position:fixed;top:0;right:-420px;width:380px;height:100vh;z-index:360;background:rgba(5,9,15,0.92);border-left:1px solid rgba(63,140,255,0.2);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);transition:right .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;font-family:"Space Grotesk",sans-serif;overflow:hidden}
+.scroll-dot{width:3px;height:3px;background:rgba(131,199,255,0.2);transition:background .3s,transform .3s}
+.scroll-dot.active{background:#83c7ff;transform:scaleX(4)}
+#side-panel{position:fixed;top:0;right:-420px;width:380px;height:100vh;z-index:360;background:rgba(12,13,15,0.92);border-left:1px solid rgba(131,199,255,0.2);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);transition:right .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;font-family:"Space Grotesk",sans-serif;overflow:hidden}
 #side-panel.open{right:0}
-#side-panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(63,140,255,0.018) 3px,rgba(63,140,255,0.018) 4px)}
-#side-panel::after{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(63,140,255,0.7),transparent)}
+#side-panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(131,199,255,0.018) 3px,rgba(131,199,255,0.018) 4px)}
+#side-panel::after{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(131,199,255,0.7),transparent)}
 #sp-inner{position:relative;z-index:1;padding:36px 32px 40px;height:100%;overflow-y:auto;display:flex;flex-direction:column}
-#sp-back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(63,140,255,0.45);padding:0;margin-bottom:40px;transition:color .2s;width:fit-content}
-#sp-back:hover{color:#3f8cff}
+#sp-back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(131,199,255,0.45);padding:0;margin-bottom:40px;transition:color .2s;width:fit-content}
+#sp-back:hover{color:#83c7ff}
 #sp-back::before{content:"←";font-size:12px;letter-spacing:0}
-#sp-index{font-family:"Space Mono",monospace;font-size:10px;color:rgba(63,140,255,0.8);letter-spacing:.25em;margin-bottom:12px}
+#sp-index{font-family:"Space Mono",monospace;font-size:10px;color:rgba(131,199,255,0.8);letter-spacing:.25em;margin-bottom:12px}
 #sp-title{font-size:40px;font-weight:700;color:#cfe6ff;letter-spacing:-.02em;line-height:1;margin-bottom:6px}
-#sp-sub{font-size:13px;color:rgba(174,206,238,0.85);letter-spacing:.04em;margin-bottom:28px}
-#sp-divider{width:44px;height:1px;background:rgba(63,140,255,0.45);margin-bottom:28px}
-#sp-desc{white-space:pre-line;font-size:14px;color:rgba(200,222,245,0.9);line-height:1.8;margin-bottom:28px;flex:1}
+#sp-sub{font-size:13px;color:rgba(190,218,245,0.85);letter-spacing:.04em;margin-bottom:28px}
+#sp-divider{width:44px;height:1px;background:rgba(131,199,255,0.45);margin-bottom:28px}
+#sp-desc{white-space:pre-line;font-size:14px;color:rgba(218,233,248,0.9);line-height:1.8;margin-bottom:28px;flex:1}
 #sp-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:32px}
-.sp-tag{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(63,140,255,0.3);color:rgba(63,140,255,0.85)}
-#sp-link{display:inline-flex;align-items:center;gap:10px;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#3f8cff;text-decoration:none;padding:11px 18px;border:1px solid rgba(63,140,255,0.35);transition:background .2s,border-color .2s;width:fit-content}
-#sp-link:hover{background:rgba(63,140,255,0.08);border-color:rgba(63,140,255,0.7)}
+.sp-tag{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(131,199,255,0.3);color:rgba(131,199,255,0.85)}
+#sp-link{display:inline-flex;align-items:center;gap:10px;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#83c7ff;text-decoration:none;padding:11px 18px;border:1px solid rgba(131,199,255,0.35);transition:background .2s,border-color .2s;width:fit-content}
+#sp-link:hover{background:rgba(131,199,255,0.08);border-color:rgba(131,199,255,0.7)}
 #crt{position:fixed;inset:0;z-index:300;pointer-events:none}
 #crt::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px)}
 #crt::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.55) 100%)}
@@ -101,25 +101,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
   #hero-sub{font-size:9px;line-height:1.55;margin-top:10px}
   #hero-scroll{bottom:24px;font-size:8px}
   #project-back{top:64px;left:16px;padding:9px 11px;font-size:8px}
-  #mobile-project-card{position:fixed;display:block;left:20px;right:20px;bottom:28px;z-index:320;padding:15px 16px;border:1px solid rgba(63,140,255,.48);background:rgba(5,9,15,.9);backdrop-filter:blur(16px);color:#e7f3ff;text-align:left;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s;font-family:"Space Grotesk",sans-serif}
+  #mobile-project-card{position:fixed;display:block;left:20px;right:20px;bottom:28px;z-index:320;padding:15px 16px;border:1px solid rgba(131,199,255,.48);background:rgba(12,13,15,.9);backdrop-filter:blur(16px);color:#e7f3ff;text-align:left;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s;font-family:"Space Grotesk",sans-serif}
   #mobile-project-card.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-  #mp-index{display:block;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#3f8cff;margin-bottom:7px}
+  #mp-index{display:block;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#83c7ff;margin-bottom:7px}
   #mp-title{display:block;font-size:21px;line-height:1.1;margin-bottom:5px}
-  #mp-sub{display:block;font-size:11px;line-height:1.45;color:rgba(200,222,245,.7)}
-  #mp-open{display:block;margin-top:10px;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#3f8cff}
+  #mp-sub{display:block;font-size:11px;line-height:1.45;color:rgba(218,233,248,.7)}
+  #mp-open{display:block;margin-top:10px;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#83c7ff}
   #scroll-track{right:10px}
   #side-panel{width:100vw;right:-100vw}
   #sp-inner{padding:26px 22px 34px}
   #sp-title{font-size:34px}
-  #outro-inner{width:100vw;padding:84px 20px 40px;background:rgba(6,10,16,.97)}
+  #outro-inner{width:100vw;padding:84px 20px 40px;background:rgba(13,14,16,.97)}
 }
 #hero-tag{max-width:min(640px,86vw);line-height:1.6;text-align:center}
-#hero-sub{margin-top:12px;font-size:12px;color:rgba(174,206,238,0.45);letter-spacing:.04em;font-weight:300;max-width:min(560px,86vw);text-align:center;line-height:1.6}
-.outro-lede{font-size:13.5px;color:rgba(200,222,245,0.9);line-height:1.7;margin-bottom:16px}
-.outro-prose{font-size:13.5px;color:rgba(200,222,245,0.88);line-height:1.8;margin-bottom:14px}
+#hero-sub{margin-top:12px;font-size:12px;color:rgba(190,218,245,0.45);letter-spacing:.04em;font-weight:300;max-width:min(560px,86vw);text-align:center;line-height:1.6}
+.outro-lede{font-size:13.5px;color:rgba(218,233,248,0.9);line-height:1.7;margin-bottom:16px}
+.outro-prose{font-size:13.5px;color:rgba(218,233,248,0.88);line-height:1.8;margin-bottom:14px}
 .sum-list,.scope{list-style:none;margin:0}
-.sum-list li,.scope li{position:relative;padding-left:18px;margin-bottom:11px;font-size:13.5px;line-height:1.7;color:rgba(200,222,245,0.88)}
-.sum-list li::before,.scope li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:1px;background:rgba(63,140,255,0.8)}
+.sum-list li,.scope li{position:relative;padding-left:18px;margin-bottom:11px;font-size:13.5px;line-height:1.7;color:rgba(218,233,248,0.88)}
+.sum-list li::before,.scope li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:1px;background:rgba(131,199,255,0.8)}
 .scope{margin:14px 0 16px}
 .scope li{font-size:12.5px;margin-bottom:8px}
 </style>
@@ -236,7 +236,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 <div id="crt"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-const GOLD=0x3f8cff,GOLD2=0x8dc6ff,BLUE=0x67e8f9;
+const GOLD=0x83c7ff,GOLD2=0xd2eaff,BLUE=0x8ed8ff;
 const REDUCED_MOTION=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* smooth in/out, plus its inverse so scroll targets still map to cards */
 /* shrink text until it fits the label, so longer project names
@@ -254,15 +254,15 @@ const PROJECTS=[
 ];
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("canvas"),antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
-renderer.setClearColor(0x070b12,1);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;
+renderer.setClearColor(0x0f1012,1);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(52,innerWidth/innerHeight,0.1,300);
 scene.add(new THREE.AmbientLight(0xcfe6ff,0.14));
 const key=new THREE.DirectionalLight(0xe7f3ff,0.9);key.position.set(8,10,10);scene.add(key);
-const goldFill=new THREE.PointLight(0x3f8cff,2.0,32);goldFill.position.set(-5,3,8);scene.add(goldFill);
-const blueFill=new THREE.PointLight(0x67e8f9,0.7,28);blueFill.position.set(7,5,-8);scene.add(blueFill);
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(60,60),new THREE.MeshPhysicalMaterial({color:0x060a10,roughness:0.06,metalness:0.15}));
+const goldFill=new THREE.PointLight(0x83c7ff,2.0,32);goldFill.position.set(-5,3,8);scene.add(goldFill);
+const blueFill=new THREE.PointLight(0x8ed8ff,0.7,28);blueFill.position.set(7,5,-8);scene.add(blueFill);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(60,60),new THREE.MeshPhysicalMaterial({color:0x0d0e10,roughness:0.06,metalness:0.15}));
 floor.rotation.x=-Math.PI/2;floor.position.y=-8;scene.add(floor);
-const grid=new THREE.GridHelper(60,30,0x10233d,0x081423);grid.position.y=-7.98;scene.add(grid);
+const grid=new THREE.GridHelper(60,30,0x202830,0x111418);grid.position.y=-7.98;scene.add(grid);
 const pillarGroup=new THREE.Group();scene.add(pillarGroup);
 const N=PROJECTS.length,RADIUS=5,STEP_H=2.8,SPIRAL=Math.PI*2.0,CARD_OUTSET=5,STAIR_TOP=(N*STEP_H)/2+4,shaftH=N*STEP_H+14;
 /* Square Eiffel-style taper: flared footing, curved shaft, thin spire.
@@ -271,7 +271,7 @@ const N=PROJECTS.length,RADIUS=5,STEP_H=2.8,SPIRAL=Math.PI*2.0,CARD_OUTSET=5,STA
    point outward the way the old box did. */
 const TOWER_BASE_Y=-8,TOWER_TOP_Y=shaftH-8,TOWER_H=TOWER_TOP_Y-TOWER_BASE_Y,TOWER_SEGS=20;
 const towerR=t=>0.16+1.95*Math.pow(1-t,2.2);
-const shaftMat=new THREE.MeshPhysicalMaterial({color:0x081423,roughness:0.05,transparent:true,opacity:0.78,side:THREE.DoubleSide});
+const shaftMat=new THREE.MeshPhysicalMaterial({color:0x111418,roughness:0.05,transparent:true,opacity:0.78,side:THREE.DoubleSide});
 const shaftLineMat=new THREE.LineBasicMaterial({color:GOLD,transparent:true,opacity:0.55});
 for(let i=0;i<TOWER_SEGS;i++){
   const t0=i/TOWER_SEGS,t1=(i+1)/TOWER_SEGS;
@@ -293,25 +293,25 @@ for(let y=-6;y<TOWER_TOP_Y;y+=3){
   b.rotation.y=Math.PI/4;b.position.y=y;pillarGroup.add(b);
 }
 const capY=shaftH-8+0.14;
-const cap=new THREE.Mesh(new THREE.BoxGeometry(0.55,0.24,0.55),new THREE.MeshPhysicalMaterial({color:0x0a192b,roughness:0.1,metalness:0.3}));cap.position.y=capY;pillarGroup.add(cap);
+const cap=new THREE.Mesh(new THREE.BoxGeometry(0.55,0.24,0.55),new THREE.MeshPhysicalMaterial({color:0x15191e,roughness:0.1,metalness:0.3}));cap.position.y=capY;pillarGroup.add(cap);
 const capEdge=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(0.55,0.24,0.55)),new THREE.LineBasicMaterial({color:GOLD2,transparent:true,opacity:0.9}));capEdge.position.y=capY;pillarGroup.add(capEdge);
-const base=new THREE.Mesh(new THREE.BoxGeometry(3.6,0.38,3.6),new THREE.MeshPhysicalMaterial({color:0x091522,roughness:0.2,metalness:0.25}));base.position.y=-7.81;pillarGroup.add(base);
+const base=new THREE.Mesh(new THREE.BoxGeometry(3.6,0.38,3.6),new THREE.MeshPhysicalMaterial({color:0x121519,roughness:0.2,metalness:0.25}));base.position.y=-7.81;pillarGroup.add(base);
 const baseEdge=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(3.6,0.38,3.6)),new THREE.LineBasicMaterial({color:GOLD,transparent:true,opacity:0.65}));baseEdge.position.y=-7.81;pillarGroup.add(baseEdge);
 const stairGroup=new THREE.Group();scene.add(stairGroup);
 const stepCards=[],holoMeshes=[],holoBack=[];
 const LABEL_SS=2;/* supersample: draw at 2x, sample down -> crisp text */
-function makeLabel(proj,i,mirrored){const lc=document.createElement("canvas");lc.width=512*LABEL_SS;lc.height=352*LABEL_SS;const ctx=lc.getContext("2d");ctx.scale(LABEL_SS,LABEL_SS);ctx.clearRect(0,0,512,352);if(mirrored){ctx.save();ctx.translate(512,0);ctx.scale(-1,1)}for(let sl=0;sl<352;sl+=4){ctx.fillStyle="rgba(63,140,255,0.03)";ctx.fillRect(0,sl,512,2)}ctx.font='400 15px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(63,140,255,0.5)":"rgba(63,140,255,0.95)";ctx.fillText((i+1)+" / "+PROJECTS.length,22,34);fitFont(ctx,proj.title,58,468,'700 $px "Space Grotesk",sans-serif');ctx.fillStyle=mirrored?"rgba(207,230,255,0.55)":"rgba(231,243,255,1.0)";ctx.fillText(proj.title,22,108);ctx.fillStyle=mirrored?"rgba(63,140,255,0.4)":"#8dc6ff";ctx.fillRect(22,120,56,2);fitFont(ctx,proj.sub,19,468,'400 $px "Space Grotesk",sans-serif');ctx.fillStyle=mirrored?"rgba(174,206,238,0.5)":"rgba(220,236,255,1.0)";ctx.fillText(proj.sub,22,152);ctx.font='400 14px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(63,140,255,0.4)":"rgba(141,198,255,0.95)";ctx.fillText(proj.tags.slice(0,3).join("  ·  "),22,192);ctx.font='400 11px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(63,140,255,0.2)":"rgba(63,140,255,0.7)";ctx.fillText(mirrored?proj.url.replace("https://",""):"click for details",22,320);if(mirrored)ctx.restore();const tex=new THREE.CanvasTexture(lc);tex.anisotropy=renderer.capabilities.getMaxAnisotropy();tex.minFilter=THREE.LinearMipmapLinearFilter;return tex}
+function makeLabel(proj,i,mirrored){const lc=document.createElement("canvas");lc.width=512*LABEL_SS;lc.height=352*LABEL_SS;const ctx=lc.getContext("2d");ctx.scale(LABEL_SS,LABEL_SS);ctx.clearRect(0,0,512,352);if(mirrored){ctx.save();ctx.translate(512,0);ctx.scale(-1,1)}for(let sl=0;sl<352;sl+=4){ctx.fillStyle="rgba(131,199,255,0.03)";ctx.fillRect(0,sl,512,2)}ctx.font='400 15px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.5)":"rgba(131,199,255,0.95)";ctx.fillText((i+1)+" / "+PROJECTS.length,22,34);fitFont(ctx,proj.title,58,468,'700 $px "Space Grotesk",sans-serif');ctx.fillStyle=mirrored?"rgba(226,240,255,0.55)":"rgba(231,243,255,1.0)";ctx.fillText(proj.title,22,108);ctx.fillStyle=mirrored?"rgba(131,199,255,0.4)":"#d2eaff";ctx.fillRect(22,120,56,2);fitFont(ctx,proj.sub,19,468,'400 $px "Space Grotesk",sans-serif');ctx.fillStyle=mirrored?"rgba(190,218,245,0.5)":"rgba(220,236,255,1.0)";ctx.fillText(proj.sub,22,152);ctx.font='400 14px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.4)":"rgba(210,234,255,0.95)";ctx.fillText(proj.tags.slice(0,3).join("  ·  "),22,192);ctx.font='400 11px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.2)":"rgba(131,199,255,0.7)";ctx.fillText(mirrored?proj.url.replace("https://",""):"click for details",22,320);if(mirrored)ctx.restore();const tex=new THREE.CanvasTexture(lc);tex.anisotropy=renderer.capabilities.getMaxAnisotropy();tex.minFilter=THREE.LinearMipmapLinearFilter;return tex}
 PROJECTS.forEach((proj,i)=>{const t=i/(N-1),angle=t*SPIRAL-Math.PI*0.5,y=i*STEP_H-(N*STEP_H)/2+2,tx=Math.cos(angle)*RADIUS,tz=Math.sin(angle)*RADIUS;
-const treadGeo=new THREE.BoxGeometry(3.4,0.12,1.6);const tread=new THREE.Mesh(treadGeo,new THREE.MeshPhysicalMaterial({color:0x080f19,roughness:0.06,transparent:true,opacity:0.85}));tread.position.set(tx,y,tz);tread.rotation.y=-angle+Math.PI/2;stairGroup.add(tread);
+const treadGeo=new THREE.BoxGeometry(3.4,0.12,1.6);const tread=new THREE.Mesh(treadGeo,new THREE.MeshPhysicalMaterial({color:0x0f1114,roughness:0.06,transparent:true,opacity:0.85}));tread.position.set(tx,y,tz);tread.rotation.y=-angle+Math.PI/2;stairGroup.add(tread);
 const treadEdge=new THREE.LineSegments(new THREE.EdgesGeometry(treadGeo),new THREE.LineBasicMaterial({color:GOLD,transparent:true,opacity:0.55}));treadEdge.position.copy(tread.position);treadEdge.rotation.copy(tread.rotation);stairGroup.add(treadEdge);
 const cx=Math.cos(angle)*CARD_OUTSET,cz=Math.sin(angle)*CARD_OUTSET;
 const cardW=3.4,cardH=2.2,cardD=0.03,cardGeo=new THREE.BoxGeometry(cardW,cardH,cardD);
-const card=new THREE.Mesh(cardGeo,new THREE.MeshPhysicalMaterial({color:0x3f8cff,transparent:true,opacity:0.04,side:THREE.DoubleSide}));card.position.set(cx,y+1.1,cz);card.rotation.y=-angle;card.userData={projectIndex:i};stairGroup.add(card);stepCards.push(card);
+const card=new THREE.Mesh(cardGeo,new THREE.MeshPhysicalMaterial({color:0x83c7ff,transparent:true,opacity:0.04,side:THREE.DoubleSide}));card.position.set(cx,y+1.1,cz);card.rotation.y=-angle;card.userData={projectIndex:i};stairGroup.add(card);stepCards.push(card);
 const cardEdge=new THREE.LineSegments(new THREE.EdgesGeometry(cardGeo),new THREE.LineBasicMaterial({color:GOLD,transparent:true,opacity:0.9}));cardEdge.position.copy(card.position);cardEdge.rotation.copy(card.rotation);stairGroup.add(cardEdge);
 const innerEdge=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(cardW-0.12,cardH-0.12,cardD)),new THREE.LineBasicMaterial({color:BLUE,transparent:true,opacity:0.28}));innerEdge.position.copy(card.position);innerEdge.rotation.copy(card.rotation);stairGroup.add(innerEdge);
 const frontTex=makeLabel(proj,i,false),frontLabel=new THREE.Mesh(new THREE.PlaneGeometry(cardW*0.92,cardH*0.92),new THREE.MeshBasicMaterial({map:frontTex,transparent:true,depthWrite:false,side:THREE.FrontSide,toneMapped:false}));frontLabel.position.copy(card.position);frontLabel.rotation.copy(card.rotation);frontLabel.position.x+=Math.cos(angle)*0.022;frontLabel.position.z+=Math.sin(angle)*0.022;frontLabel.userData={glitchTimer:Math.random()*5,baseX:frontLabel.position.x,baseY:card.position.y,baseZ:frontLabel.position.z,i};stairGroup.add(frontLabel);holoMeshes.push(frontLabel);
 const backTex=makeLabel(proj,i,true),backLabel=new THREE.Mesh(new THREE.PlaneGeometry(cardW*0.92,cardH*0.92),new THREE.MeshBasicMaterial({map:backTex,transparent:true,depthWrite:false,side:THREE.BackSide,toneMapped:false}));backLabel.position.copy(card.position);backLabel.rotation.copy(card.rotation);backLabel.position.x-=Math.cos(angle)*0.022;backLabel.position.z-=Math.sin(angle)*0.022;stairGroup.add(backLabel);holoBack.push(backLabel);
-const supportH=y+8,support=new THREE.Mesh(new THREE.BoxGeometry(0.03,supportH,0.03),new THREE.MeshBasicMaterial({color:0x0a192b,transparent:true,opacity:0.6}));support.position.set(tx,y-supportH/2,tz);stairGroup.add(support)});
+const supportH=y+8,support=new THREE.Mesh(new THREE.BoxGeometry(0.03,supportH,0.03),new THREE.MeshBasicMaterial({color:0x15191e,transparent:true,opacity:0.6}));support.position.set(tx,y-supportH/2,tz);stairGroup.add(support)});
 const railPts=[];for(let i=0;i<N;i++){const tt=i/(N-1),angle=tt*SPIRAL-Math.PI*0.5,y=i*STEP_H-(N*STEP_H)/2+2+1.1;railPts.push(new THREE.Vector3(Math.cos(angle)*CARD_OUTSET,y,Math.sin(angle)*CARD_OUTSET))}
 const railGeo=new THREE.BufferGeometry().setFromPoints(new THREE.CatmullRomCurve3(railPts).getPoints(160));scene.add(new THREE.Line(railGeo,new THREE.LineBasicMaterial({color:GOLD,transparent:true,opacity:0.5})));
 const track=document.getElementById("scroll-track");for(let i=0;i<N;i++){const d=document.createElement("div");d.className="scroll-dot";d.id="dot-"+i;track.appendChild(d)}
