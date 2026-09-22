@@ -260,6 +260,8 @@ scene.add(new THREE.AmbientLight(0xcfe6ff,0.14));
 const key=new THREE.DirectionalLight(0xe7f3ff,0.9);key.position.set(8,10,10);scene.add(key);
 const goldFill=new THREE.PointLight(0x83c7ff,2.0,32);goldFill.position.set(-5,3,8);scene.add(goldFill);
 const blueFill=new THREE.PointLight(0x8ed8ff,0.7,28);blueFill.position.set(7,5,-8);scene.add(blueFill);
+const towerLightUpper=new THREE.PointLight(0xd2eaff,2.6,14,2);towerLightUpper.position.set(2.8,8,3.5);scene.add(towerLightUpper);
+const towerLightLower=new THREE.PointLight(0x83c7ff,2.0,13,2);towerLightLower.position.set(-2.6,-3,3.2);scene.add(towerLightLower);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(60,60),new THREE.MeshPhysicalMaterial({color:0x0d0e10,roughness:0.06,metalness:0.15}));
 floor.rotation.x=-Math.PI/2;floor.position.y=-8;scene.add(floor);
 const grid=new THREE.GridHelper(60,30,0x202830,0x111418);grid.position.y=-7.98;scene.add(grid);
