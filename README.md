@@ -4,6 +4,7 @@ Personal portfolio. A single self-contained HTML file: an interactive 3D tower
 built with Three.js, where scrolling spirals the camera down and around six
 project cards.
 
+Live link: vanshika-portfolio-1zal.vercel.app
 
 ## Running it
 
