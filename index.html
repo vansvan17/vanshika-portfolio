@@ -126,6 +126,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 /* Keep the scene intact; adapt the controls and overlays to touch screens. */
 #canvas{touch-action:pinch-zoom}
 #outro-inner,#sp-inner{overscroll-behavior-y:contain;touch-action:pan-y pinch-zoom;-webkit-overflow-scrolling:touch}
+/* Own About's touch gesture so it can cross from text back into the scene. */
+#outro-inner{touch-action:pinch-zoom}
+.static-mode #outro-inner{touch-action:pan-y pinch-zoom}
 #side-panel{height:100dvh}
 #sp-inner>*{flex-shrink:0}
 #sp-inner{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
@@ -221,22 +224,6 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
         <h3>KubeVela</h3>
         <div class="meta">Contributor · Go · Kubernetes</div>
         <p>Added lifecycle-management APIs for explicit goroutine shutdown in long-running controller processes. Also shortlisted for a CNCF LFX mentorship project around LRU eviction for native Helm providers.</p>
-      </div>
-    </div>
-    <div class="outro-section">
-      <div class="outro-label">Paid Work</div>
-      <div class="outro-item">
-        <h3>Technical Architecture Engagement</h3>
-        <div class="meta">Independent consulting · 2026</div>
-        <p>Completed a paid Stage 1 architecture and compatibility assessment for an AI business-operations product.</p>
-        <ul class="scope">
-          <li>defining a first representative workflow</li>
-          <li>identifying system boundaries and integration assumptions</li>
-          <li>proposing an MCP-based orchestration direction</li>
-          <li>setting observability requirements and acceptance criteria</li>
-          <li>creating a practical MVP implementation roadmap</li>
-        </ul>
-        <p>I care about small, explicit scopes: a useful deliverable, a written acceptance criterion, and no pretend certainty about untested product outcomes.</p>
       </div>
     </div>
     <div class="outro-section">
@@ -370,20 +357,39 @@ const railGeo=new THREE.BufferGeometry().setFromPoints(new THREE.CatmullRomCurve
 const track=document.getElementById("scroll-track");for(let i=0;i<N;i++){const d=document.createElement("div");d.className="scroll-dot";d.id="dot-"+i;track.appendChild(d)}
 const INTRO_LEN=300,PROJ_LEN=(N-1)*220,OUTRO_LEN=300,INTRO_END=INTRO_LEN,PROJ_END=INTRO_LEN+PROJ_LEN,MAX_SCROLL=INTRO_LEN+PROJ_LEN+OUTRO_LEN;
 let scrollY=0,targetScroll=0;
-// A gesture belongs to either the scene or a native scrolling panel, never both.
+// At the start of About, upward scrolling hands control back to the scene.
 function panelOwnsInput(target){
   return document.getElementById("side-panel").classList.contains("open") ||
     !!target.closest("#outro.visible,nav,#project-back");
 }
 function moveScene(delta){targetScroll=Math.max(0,Math.min(MAX_SCROLL,targetScroll+delta))}
+function routeScroll(target,delta,fromTouch=false){
+  if(document.getElementById("side-panel").classList.contains("open")||target.closest("nav,#project-back"))return false;
+  if(target.closest("#outro")&&document.getElementById("outro").classList.contains("visible")){
+    const panel=document.getElementById("outro-inner");
+    if(fromTouch){
+      const before=Math.max(0,panel.scrollTop);
+      panel.scrollTop=Math.max(0,before+delta);
+      // Consume the panel's remaining distance before returning to the tower.
+      if(delta<0&&before+delta<0){
+        targetScroll=Math.min(targetScroll,scrollY);
+        moveScene((before+delta)*2);
+      }
+      return true;
+    }
+    if(delta>=0||panel.scrollTop>1)return false;
+    targetScroll=Math.min(targetScroll,scrollY);
+  }
+  moveScene(delta*(fromTouch?2:0.8));
+  return true;
+}
 window.addEventListener("wheel",e=>{
-  if(panelOwnsInput(e.target))return;
-  moveScene(e.deltaY*0.8);
-},{passive:true});
+  if(routeScroll(e.target,e.deltaY)&&e.cancelable)e.preventDefault();
+},{passive:false});
 let sceneTouch=null,gestureMoved=false;
 window.addEventListener("touchstart",e=>{
   sceneTouch=null;gestureMoved=false;
-  if(e.touches.length!==1||panelOwnsInput(e.target))return;
+  if(e.touches.length!==1||document.getElementById("side-panel").classList.contains("open")||e.target.closest("nav,#project-back"))return;
   const touch=e.touches[0];
   sceneTouch={id:touch.identifier,x:touch.clientX,y:touch.clientY,startX:touch.clientX,startY:touch.clientY};
 },{passive:true});
@@ -395,7 +401,7 @@ window.addEventListener("touchmove",e=>{
   const dy=sceneTouch.y-touch.clientY;
   gestureMoved=gestureMoved||Math.hypot(touch.clientX-sceneTouch.startX,touch.clientY-sceneTouch.startY)>8;
   sceneTouch.y=touch.clientY;
-  if(gestureMoved){if(e.cancelable)e.preventDefault();moveScene(dy*2)}
+  if(gestureMoved&&routeScroll(e.target,dy,true)&&e.cancelable)e.preventDefault();
 },{passive:false});
 window.addEventListener("touchend",()=>{sceneTouch=null},{passive:true});
 window.addEventListener("touchcancel",()=>{sceneTouch=null},{passive:true});
