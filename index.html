@@ -52,6 +52,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 .outro-item{border-left:1px solid rgba(131,199,255,0.25);padding:4px 0 4px 20px;margin-bottom:22px}
 .outro-item h3{font-size:17px;font-weight:500;color:#cfe6ff;margin-bottom:4px;letter-spacing:.01em}
 .outro-item .meta{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;color:rgba(131,199,255,0.85);margin-bottom:8px;text-transform:lowercase}
+.outro-item .tech{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.06em;line-height:1.9;color:rgba(131,199,255,0.6);margin-top:10px}
 .outro-item p{font-size:13.5px;color:rgba(218,233,248,0.88);line-height:1.7}
 .stat-row{display:flex;gap:36px;flex-wrap:wrap}
 .stat{padding:4px 0}
@@ -187,6 +188,7 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
   <div id="nav-links">
     <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('top',event)">Top</button>
     <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('projects',event)">Projects</button>
+    <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('hardware',event)">Hardware</button>
     <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('about',event)">About</button>
   </div>
 </nav>
@@ -203,6 +205,38 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
 </div>
 <div id="outro">
   <div id="outro-inner">
+    <div class="outro-section" id="hardware">
+      <div class="outro-label">Hardware, though?</div>
+      <p class="outro-lede">Most of what's above lives on servers. This part you can touch.</p>
+      <div class="outro-item">
+        <h3>Point-to-listen museum case</h3>
+        <div class="meta">Museum exhibit · in progress</div>
+        <p>A display case you talk to by pointing. Hold a finger over an object for three seconds and its story plays in the headphones, while the screen under the glass glows beneath it. No buttons, no touchscreen: a camera above the case watches for your finger, and a passing hand does nothing.</p>
+        <div class="tech">Raspberry Pi 4 · Camera Module 3 NoIR · Python · OpenCV · background subtraction, fingertip = the point reaching farthest in · camera-to-TV calibration · ~11 fps at 960×540</div>
+      </div>
+    </div>
+    <div class="outro-section" id="research">
+      <div class="outro-label">Research</div>
+      <p class="outro-lede">Questions I'm chasing that don't have answers yet.</p>
+      <div class="outro-item">
+        <h3>Keeping urgent jobs on time</h3>
+        <div class="meta">Real-time scheduling · in progress</div>
+        <p>When a small computer runs a machine, some jobs can't be late: a motor controller has to answer on time, every time. I'm testing whether a different way of letting urgent jobs cut the line makes that timing steadier on a Raspberry Pi, compared with the tricks people already use.</p>
+        <div class="tech">FreeRTOS · AArch64 on Raspberry Pi 4 · preemption threshold vs temporary priority raise vs scheduler suspension · cycle-counter instrumentation for latency and missed deadlines · hardware runs pending</div>
+      </div>
+      <div class="outro-item">
+        <h3>Editing a tree that won't sit still</h3>
+        <div class="meta">Concurrent data structures · in progress</div>
+        <p>Picture a huge family tree or folder structure that lots of people change at once. DomLock is an existing way to let them work without stepping on each other. I'm studying how to apply many changes together in one batch, safely, while the shape of the tree itself keeps changing.</p>
+        <div class="tech">C++20 · DomLock · batched edge insert/delete on a DAG · prepare / validate / merge / apply deltas · CSR engine run at 1M–10M nodes · exact model and Python oracle as cross-checks</div>
+      </div>
+      <div class="outro-item">
+        <h3>When the shortcut gets slow</h3>
+        <div class="meta">Data structures · in progress</div>
+        <p>Lots of software keeps a running list and constantly asks "what's next?", like a server tracking which connections have timed out. The standard tool for this uses a clever shortcut that's usually faster. I found a pattern where it gets over five times slower, and it's the pattern those servers actually create. I'm working out exactly why.</p>
+        <div class="tech">C++20 · d-ary heap from scratch vs libc++ std::priority_queue · bottom-up (Floyd) pop 5.6× slower at 16M when pushes land near the top · settle depth ≈ log₂S / log₂N · algorithm and API effects measured separately</div>
+      </div>
+    </div>
     <div class="outro-section">
       <div class="outro-label">The short version</div>
       <p class="outro-lede">I like building interactive things, but not everyone has time to explore a portfolio. Here is the short version:</p>
@@ -234,7 +268,7 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
         <div class="stat"><div class="num">300+</div><div class="lbl">Problems solved</div></div>
       </div>
     </div>
-    <div class="outro-section">
+    <div class="outro-section" id="about">
       <div class="outro-label">About</div>
       <p class="outro-prose">I'm Vanshika, a CS student who likes the part of software where tradeoffs are real: concurrency, databases, systems performance, observability, and infrastructure.</p>
       <p class="outro-prose">I study Computer Science at BITS Pilani (B.Sc., expected 2029) and am based in Bengaluru, India.</p>
@@ -368,6 +402,8 @@ function routeScroll(target,delta,fromTouch=false){
   if(document.getElementById("side-panel").classList.contains("open")||target.closest("nav,#project-back"))return false;
   if(target.closest("#outro")&&document.getElementById("outro").classList.contains("visible")){
     const panel=document.getElementById("outro-inner");
+    // Finish the fade before the panel scrolls, so its text never slides by half-covered.
+    if(delta>0&&scrollY<PROJ_END+OUTRO_LEN*.95){targetScroll=MAX_SCROLL;return true}
     if(fromTouch){
       const before=Math.max(0,panel.scrollTop);
       panel.scrollTop=Math.max(0,before+delta);
@@ -410,7 +446,7 @@ window.addEventListener("touchcancel",()=>{sceneTouch=null},{passive:true});
 window.addEventListener("click",e=>{
   if(gestureMoved){gestureMoved=false;e.preventDefault();e.stopImmediatePropagation()}
 },true);
-function portfolioNavigate(destination,event){if(event){event.preventDefault();event.stopPropagation()}closePanel();if(destination==="top")targetScroll=0;else if(destination==="projects")targetScroll=INTRO_END+10;else targetScroll=MAX_SCROLL}
+function portfolioNavigate(destination,event){if(event){event.preventDefault();event.stopPropagation()}closePanel();if(destination==="top")targetScroll=0;else if(destination==="projects")targetScroll=INTRO_END+10;else{targetScroll=MAX_SCROLL;const panel=document.getElementById("outro-inner"),section=document.getElementById(destination);if(section)panel.scrollTop=section.offsetTop-parseFloat(getComputedStyle(panel).paddingTop)}}
 window.portfolioNavigate=portfolioNavigate;const projectBack=document.getElementById("project-back");
 const cursorEl=document.getElementById("cursor"),mouse=new THREE.Vector2(-9,-9);
 const mobileProjectCard=document.getElementById("mobile-project-card");let mobileProjectIndex=0;mobileProjectCard.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();openPanel(mobileProjectIndex)});
@@ -422,7 +458,7 @@ const raycaster=new THREE.Raycaster();
 window.addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 const heroEl=document.getElementById("hero"),outroEl=document.getElementById("outro"),clock=new THREE.Clock();let hoveredCard=null;
 window.addEventListener("keydown",e=>{if(e.key==="Escape"){closePanel();return}if(panelOwnsInput(e.target)||e.target.closest("button,a,input,textarea,select"))return;const stepFwd=e.key==="ArrowDown"||e.key==="ArrowRight"||e.key==="j",stepBack=e.key==="ArrowUp"||e.key==="ArrowLeft"||e.key==="k";if(stepFwd||stepBack){e.preventDefault();const projT=Math.max(0,Math.min(1,(targetScroll-INTRO_END)/PROJ_LEN));let idx=Math.round(ease(projT)*(N-1));if(targetScroll<INTRO_END)idx=-1;idx+=stepFwd?1:-1;if(idx<0){targetScroll=0;return}if(idx>N-1){targetScroll=MAX_SCROLL;return}targetScroll=INTRO_END+easeInv(idx/(N-1))*PROJ_LEN;return}if(e.key==="Enter"){if(targetScroll<=INTRO_END||targetScroll>PROJ_END)return;const projT=Math.max(0,Math.min(1,(targetScroll-INTRO_END)/PROJ_LEN));openPanel(N-1-Math.round(ease(projT)*(N-1)))}});
-function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();scrollY+=(targetScroll-scrollY)*0.06;const heroT=Math.min(1,scrollY/INTRO_LEN),projT=Math.max(0,Math.min(1,(scrollY-INTRO_END)/PROJ_LEN)),outroT=Math.max(0,Math.min(1,(scrollY-PROJ_END)/OUTRO_LEN));heroEl.style.opacity=String(1-heroT);outroEl.style.opacity=String(outroT);outroEl.classList.toggle("visible",outroT>0.5);projectBack.classList.toggle("visible",scrollY>INTRO_END*.72&&outroT<.5);let camAngle,camRadius,camY,lookY;/* ORBIT0 is where the descent starts. Every phase is written to begin
+function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();scrollY+=(targetScroll-scrollY)*0.06;const heroT=Math.min(1,scrollY/INTRO_LEN),projT=Math.max(0,Math.min(1,(scrollY-INTRO_END)/PROJ_LEN)),outroT=Math.max(0,Math.min(1,(scrollY-PROJ_END)/OUTRO_LEN));heroEl.style.opacity=String(1-heroT);outroEl.style.opacity=String(outroT);outroEl.classList.toggle("visible",outroT>0.5);projectBack.classList.toggle("visible",scrollY>INTRO_END*.72&&outroT<.1);let camAngle,camRadius,camY,lookY;/* ORBIT0 is where the descent starts. Every phase is written to begin
    exactly where the previous one ended, so no frame ever jumps. */
 const ORBIT0=Math.PI/2+stairGroup.rotation.y;
 if(scrollY<=INTRO_END){const topY=STAIR_TOP+2,eh=ease(heroT);camAngle=0.1+(ORBIT0-0.1)*heroT*heroT*heroT;camRadius=9+9*eh;camY=topY-(topY-10)*eh;lookY=camY-(2-0.5*eh)}else if(scrollY<=PROJ_END){const cp=ease(projT);camAngle=ORBIT0+cp*Math.PI*2.0;camRadius=18-cp*2;camY=10-cp*(N*STEP_H*0.92);lookY=camY-1.5}else{const eo=ease(outroT);camAngle=ORBIT0+Math.PI*2.0+eo*0.4;camRadius=16+eo*6;camY=(10-N*STEP_H*0.92)+eo*8.856;lookY=camY-(1.5+1.5*eo)}camera.position.set(Math.sin(camAngle)*camRadius,camY,Math.cos(camAngle)*camRadius);camera.lookAt(0,lookY,0);if(outroT>0)camera.setViewOffset(innerWidth,innerHeight,-outroT*innerWidth*0.28,0,innerWidth,innerHeight);else if(camera.view&&camera.view.enabled)camera.clearViewOffset();if(!REDUCED_MOTION){pillarGroup.rotation.y=t*0.025;stairGroup.rotation.y=t*0.025}const activeStep=Math.round(ease(projT)*(N-1)),displayStep=N-1-activeStep,inProjects=scrollY>INTRO_END&&scrollY<=PROJ_END;mobileProjectCard.classList.toggle("visible",inProjects);if(inProjects&&(mobileProjectIndex!==displayStep||!document.getElementById("mp-title").textContent)){mobileProjectCard.classList.remove("card-changed");void mobileProjectCard.offsetWidth;mobileProjectCard.classList.add("card-changed");mobileProjectIndex=displayStep;const mp=PROJECTS[displayStep];document.getElementById("mp-index").textContent=(activeStep+1)+" of "+N;document.getElementById("mp-title").textContent=mp.title;document.getElementById("mp-sub").textContent=mp.sub}for(let i=0;i<N;i++){const d=document.getElementById("dot-"+i);if(d)d.className="scroll-dot"+(inProjects&&i===activeStep?" active":"")}raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length){const c=hits[0].object;if(hoveredCard!==c){if(hoveredCard)hoveredCard.material.opacity=0.04;hoveredCard=c}hoveredCard.material.opacity=0.11+Math.sin(t*4)*0.03;cursorEl.classList.add("hover")}else{if(hoveredCard){hoveredCard.material.opacity=0.04;hoveredCard=null}cursorEl.classList.remove("hover")}holoMeshes.forEach((mesh,i)=>{if(REDUCED_MOTION){mesh.material.opacity=0.95;return}mesh.userData.glitchTimer-=0.016;if(mesh.userData.glitchTimer<=0){mesh.userData.glitchTimer=2.5+Math.random()*7;mesh.userData.glitching=true;mesh.userData.glitchEnd=t+0.08+Math.random()*0.1}if(mesh.userData.glitching){if(t<mesh.userData.glitchEnd){mesh.position.x=mesh.userData.baseX+(Math.random()-0.5)*0.09;mesh.position.y=mesh.userData.baseY+(Math.random()-0.5)*0.05;mesh.material.opacity=0.72+Math.random()*0.28}else{mesh.userData.glitching=false;mesh.position.set(mesh.userData.baseX,mesh.userData.baseY,mesh.userData.baseZ);mesh.material.opacity=1.0}}else{mesh.material.opacity=0.93+Math.sin(t*1.6+i*2.1)*0.07}});holoBack.forEach((mesh,i)=>{mesh.material.opacity=REDUCED_MOTION?0.35:0.3+Math.sin(t*1.2+i*1.7)*0.07});renderer.render(scene,camera)}animate();
@@ -442,7 +478,7 @@ if(scrollY<=INTRO_END){const topY=STAIR_TOP+2,eh=ease(heroT);camAngle=0.1+(ORBIT
   document.getElementById("hero").after(projects);
   window.portfolioNavigate=(destination,event)=>{
     if(event){event.preventDefault();event.stopPropagation()}
-    document.getElementById(destination==="top"?"hero":destination==="projects"?"fallback-projects":"outro").scrollIntoView({behavior:REDUCED_MOTION?"auto":"smooth"});
+    document.getElementById(destination==="top"?"hero":destination==="projects"?"fallback-projects":destination).scrollIntoView({behavior:REDUCED_MOTION?"auto":"smooth"});
   };
 }
 </script>
