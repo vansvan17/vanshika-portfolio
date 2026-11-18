@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>vanshika turakhia | systems · security · research · hardware</title>
-<meta name="description" content="CS student at BITS Pilani. Low-level C++ with merged fixes in Qualcomm's eld linker and spdlog, ICPC 2026 regionalist and Codeforces Expert, a 24-week offensive security course, research on real-time and concurrent systems, and electronics."/>
+<meta name="color-scheme" content="dark"/>
+<title>vanshika turakhia | hardware · systems · security · research</title>
+<meta name="description" content="Vanshika Turakhia builds sensor units: circuit and PCB design, analog, sensors on Raspberry Pis, firmware and dashboards. Also low-level C++ with merged fixes in Qualcomm's eld linker and spdlog, ICPC 2026 regionalist, a 24-week offensive security course, and research on real-time systems."/>
 <meta property="og:title" content="Vanshika Turakhia"/>
-<meta property="og:description" content="Low level · competitive programming · research · cybersecurity · electronics. Merged into Qualcomm's eld and spdlog; ICPC 2026 regionalist; Codeforces Expert."/>
+<meta property="og:description" content="Sensor units, from circuit board to dashboard. Plus low-level C++, research, cybersecurity and competitive programming."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://vanshikaturakhia.dev"/>
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Vanshika Turakhia"/>
-<meta name="twitter:description" content="Low level · competitive programming · research · cybersecurity · electronics"/>
+<meta name="twitter:description" content="Sensor units, from circuit board to dashboard · low level · research · cybersecurity"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='9' fill='%230f1012'/%3E%3Cpath d='M10 13h11l11 30 11-30h11L38 52H26Z' fill='%2383c7ff'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
@@ -69,6 +70,13 @@ a.nav-link{text-decoration:none}
 .scroll-dot{width:3px;height:3px;background:rgba(131,199,255,0.2);transition:background .3s,transform .3s}
 .scroll-dot.active{background:#83c7ff;transform:scaleX(4)}
 #crt{position:fixed;inset:0;z-index:300;pointer-events:none}
+/* Dark cover that fades in while the camera flies into a card, so leaving never shows white. */
+#leave{position:fixed;inset:0;z-index:600;background:#0f1012;opacity:0;pointer-events:none;transition:opacity .3s .2s}
+#leave.on{opacity:1;pointer-events:auto}
+/* Browsers that support it crossfade between the tower and the floor pages. */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.35s}
+
 #crt::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px)}
 #crt::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.55) 100%)}
 @keyframes flicker{0%,89%,91%,100%{opacity:1}90%{opacity:.94}92%{opacity:.98}}
@@ -171,10 +179,10 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
   <span id="mp-index"></span><strong id="mp-title"></strong><span id="mp-sub"></span><span id="mp-open">Tap to open &rarr;</span>
 </button>
 <div id="hero">
-  <div id="hero-kicker">Systems · Security · Research · Hardware</div>
+  <div id="hero-kicker">Hardware · Systems · Security · Research</div>
   <h1>Vanshika<br/>Turakhia</h1>
-  <div id="hero-tag">I like finding out how things really work, from a linker to a lock-free queue to a circuit board, and then measuring them.</div>
-  <div id="hero-sub">CS student at BITS Pilani · ICPC 2026 regionalist · Codeforces Expert</div>
+  <div id="hero-tag">I build sensor units, from the circuit board to the dashboard, and the low-level software that keeps them honest.</div>
+  <div id="hero-sub">PCB design · analog · Raspberry Pi · CS student at BITS Pilani · ICPC 2026 regionalist</div>
   <div id="hero-scroll">scroll</div>
 </div>
 <div id="outro">
@@ -183,22 +191,23 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
       <div class="outro-label">The short version</div>
       <p class="outro-lede">I like building interactive things, but not everyone has time to explore a portfolio. Here is the short version:</p>
       <ul class="sum-list">
+        <li>I build sensor units: circuit and PCB design, analog, sensors on Raspberry Pis, firmware, and the dashboard on top.</li>
         <li>I write low-level C++: a lock-free queue, a sharded allocator, an epoll HTTP server, a vectorized query engine and a small JIT compiler.</li>
         <li>My fixes are merged into Qualcomm's eld linker and spdlog.</li>
         <li>ICPC 2026 Asia regionalist (Amritapuri), Codeforces Expert with a max of 1604, and 1000+ problems solved.</li>
         <li>I built a 24-week offensive security course, from web hacking down to binary exploitation and fuzzing.</li>
-        <li>I research real-time scheduling, concurrent data structures and heaps, and I design PCBs and analog circuits.</li>
+        <li>I research real-time scheduling, concurrent data structures and heaps.</li>
         <li>I take on small, clearly scoped backend, data, integration, and reliability engagements.</li>
       </ul>
     </div>
     <div class="outro-section" id="floors">
       <div class="outro-label">The floors</div>
       <div id="floor-row">
+        <a class="contact-link" href="electronics.html">Electronics &amp; hardware</a>
         <a class="contact-link" href="low-level.html">Low level</a>
         <a class="contact-link" href="competitive-programming.html">Competitive programming</a>
         <a class="contact-link" href="research.html">Research</a>
         <a class="contact-link" href="security.html">Cybersecurity</a>
-        <a class="contact-link" href="electronics.html">Electronics</a>
       </div>
     </div>
     <div class="outro-section" id="about">
@@ -209,10 +218,10 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
     </div>
     <div class="outro-section">
       <div class="outro-label">Stack</div>
+      <div class="skill-line"><span class="k">Hardware</span><span class="v">PCB design · analog · I²C sensors · Raspberry Pi · FreeRTOS · OpenCV</span></div>
       <div class="skill-line"><span class="k">Languages</span><span class="v">C++20 · Go · Python · TypeScript · SQL</span></div>
       <div class="skill-line"><span class="k">Systems</span><span class="v">epoll · mmap · sendfile · std::atomic · ASan · TSan · perf</span></div>
       <div class="skill-line"><span class="k">Infra</span><span class="v">Kafka · ClickHouse · PostgreSQL · Redis · Docker · Grafana</span></div>
-      <div class="skill-line"><span class="k">Hardware</span><span class="v">Raspberry Pi · FreeRTOS · OpenCV · PCB design · analog</span></div>
       <div class="skill-line"><span class="k">Also</span><span class="v">APIs · integrations · data ingestion · observability</span></div>
     </div>
     <div class="outro-section">
@@ -228,6 +237,7 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
 </div>
 <div id="scroll-track"></div>
 <div id="crt"></div>
+<div id="leave"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 const GOLD=0x83c7ff,GOLD2=0xd2eaff,BLUE=0x8ed8ff;
@@ -241,11 +251,11 @@ const ease=x=>x<0.5?2*x*x:1-Math.pow(-2*x+2,2)/2,easeInv=y=>y<0.5?Math.sqrt(y/2)
 /* One card per floor. The last entry is the top floor, the one people see first.
    Each card opens its own page; slug is also the #hash that brings you back to it. */
 const PROJECTS=[
-{slug:"electronics",title:"Electronics",sub:"PCB design, analog, things you can touch",desc:"PCB design and analog circuits, and a point-to-listen museum case: hold a finger over an object and its story plays.",tags:["Raspberry Pi","OpenCV","PCBs"],url:"electronics.html"},
 {slug:"security",title:"Cybersecurity",sub:"A 24-week offensive security course I built",desc:"A course from web hacking down to binary exploitation, reverse engineering and fuzzing, with a hands-on lab every week.",tags:["web","binary exploitation","fuzzing"],url:"security.html"},
 {slug:"research",title:"Research",sub:"Questions that don't have answers yet",desc:"Real-time scheduling with FreeRTOS on a Raspberry Pi 4, batched updates to DomLock hierarchies, and a heap pattern that runs 5.6x slower.",tags:["real-time","concurrency","data structures"],url:"research.html"},
 {slug:"competitive-programming",title:"Competitive Programming",sub:"ICPC 2026 regionalist · Codeforces Expert",desc:"ICPC 2026 Asia regionalist at Amritapuri, Codeforces max 1604 (Expert), 1000+ problems solved.",tags:["1604 max","1000+ solved","ICPC Amritapuri"],url:"competitive-programming.html"},
 {slug:"low-level",title:"Low Level",sub:"Merged into Qualcomm's linker and spdlog",desc:"Merged fixes in Qualcomm's eld linker and spdlog. A JIT compiler, a sharded allocator, a lock-free queue, an epoll HTTP server and a vectorized query engine.",tags:["C++20","lock-free","JIT"],url:"low-level.html"},
+{slug:"electronics",title:"Electronics & Hardware",sub:"Sensor units, from circuit board to dashboard",desc:"I build sensor units: circuit and PCB design, analog, sensors on Raspberry Pis, firmware and the dashboard on top. Plus a point-to-listen museum case and bare-metal FreeRTOS on a Pi 4.",tags:["sensor units","PCB design","Raspberry Pi"],url:"electronics.html"},
 ];
 try {
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("canvas"),antialias:true});
@@ -384,11 +394,16 @@ const mobileProjectCard=document.getElementById("mobile-project-card");let mobil
 window.addEventListener("mousemove",e=>{cursorEl.style.left=e.clientX+"px";cursorEl.style.top=e.clientY+"px";mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1});
 // Open a floor's page. The tower's own history entry is first tagged with the floor's #hash,
 // so the browser's back button (or the page's "back to the tower") returns to the same floor.
-function openFloor(i){const p=PROJECTS[i];history.replaceState(null,"","#"+p.slug);
+// While leaving, the camera flies into the clicked card (see animate) as the dark cover fades in.
+let leaving=null;const leaveCard=new THREE.Vector3(),leaveLook=new THREE.Vector3();
+function openFloor(i){if(leaving)return;const p=PROJECTS[i];history.replaceState(null,"","#"+p.slug);
   if(REDUCED_MOTION){location.href=p.url;return}
-  document.documentElement.style.transition="opacity .25s";document.documentElement.style.opacity="0";setTimeout(()=>{location.href=p.url},250)}
-// A page restored from the back/forward cache keeps the faded-out state; undo it.
-addEventListener("pageshow",()=>{document.documentElement.style.opacity=""});
+  leaving={i,start:clock.getElapsedTime()};document.getElementById("leave").classList.add("on");
+  setTimeout(()=>{location.href=p.url},500)}
+// A page restored from the back/forward cache is still mid-exit; put the scene back.
+addEventListener("pageshow",()=>{leaving=null;document.getElementById("leave").classList.remove("on")});
+// Fetch the floor pages once the tower has loaded, so a click opens them instantly.
+addEventListener("load",()=>{PROJECTS.map(p=>p.url).concat("domain.css").forEach(href=>{const l=document.createElement("link");l.rel="prefetch";l.href=href;document.head.appendChild(l)})});
 window.addEventListener("click",e=>{if(e.target.closest(".portfolio-control")||e.target.closest("nav")||e.target.closest("#outro"))return;mouse.set((e.clientX/innerWidth)*2-1,-(e.clientY/innerHeight)*2+1);raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length)openFloor(hits[0].object.userData.projectIndex)});
 const raycaster=new THREE.Raycaster();
 window.addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
@@ -397,7 +412,7 @@ window.addEventListener("keydown",e=>{if(panelOwnsInput(e.target)||e.target.clos
 function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();scrollY+=(targetScroll-scrollY)*0.06;const heroT=Math.min(1,scrollY/INTRO_LEN),projT=Math.max(0,Math.min(1,(scrollY-INTRO_END)/PROJ_LEN)),outroT=Math.max(0,Math.min(1,(scrollY-PROJ_END)/OUTRO_LEN));heroEl.style.opacity=String(1-heroT);outroEl.style.opacity=String(outroT);outroEl.classList.toggle("visible",outroT>0.5);projectBack.classList.toggle("visible",scrollY>INTRO_END*.72&&outroT<.1);let camAngle,camRadius,camY,lookY;/* ORBIT0 is where the descent starts. Every phase is written to begin
    exactly where the previous one ended, so no frame ever jumps. */
 const ORBIT0=Math.PI/2+stairGroup.rotation.y;
-if(scrollY<=INTRO_END){const topY=STAIR_TOP+2,eh=ease(heroT);camAngle=0.1+(ORBIT0-0.1)*heroT*heroT*heroT;camRadius=9+9*eh;camY=topY-(topY-10)*eh;lookY=camY-(2-0.5*eh)}else if(scrollY<=PROJ_END){const cp=ease(projT);camAngle=ORBIT0+cp*Math.PI*2.0;camRadius=18-cp*2;camY=10-cp*(N*STEP_H*0.92);lookY=camY-1.5}else{const eo=ease(outroT);camAngle=ORBIT0+Math.PI*2.0+eo*0.4;camRadius=16+eo*6;camY=(10-N*STEP_H*0.92)+eo*8.856;lookY=camY-(1.5+1.5*eo)}camera.position.set(Math.sin(camAngle)*camRadius,camY,Math.cos(camAngle)*camRadius);camera.lookAt(0,lookY,0);if(outroT>0)camera.setViewOffset(innerWidth,innerHeight,-outroT*innerWidth*0.28,0,innerWidth,innerHeight);else if(camera.view&&camera.view.enabled)camera.clearViewOffset();if(!REDUCED_MOTION){pillarGroup.rotation.y=t*0.025;stairGroup.rotation.y=t*0.025}const activeStep=Math.round(ease(projT)*(N-1)),displayStep=N-1-activeStep,inProjects=scrollY>INTRO_END&&scrollY<=PROJ_END;mobileProjectCard.classList.toggle("visible",inProjects);if(inProjects&&(mobileProjectIndex!==displayStep||!document.getElementById("mp-title").textContent)){mobileProjectCard.classList.remove("card-changed");void mobileProjectCard.offsetWidth;mobileProjectCard.classList.add("card-changed");mobileProjectIndex=displayStep;const mp=PROJECTS[displayStep];document.getElementById("mp-index").textContent=(activeStep+1)+" of "+N;document.getElementById("mp-title").textContent=mp.title;document.getElementById("mp-sub").textContent=mp.sub}for(let i=0;i<N;i++){const d=document.getElementById("dot-"+i);if(d)d.className="scroll-dot"+(inProjects&&i===activeStep?" active":"")}raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length){const c=hits[0].object;if(hoveredCard!==c){if(hoveredCard)hoveredCard.material.opacity=0.04;hoveredCard=c}hoveredCard.material.opacity=0.11+Math.sin(t*4)*0.03;cursorEl.classList.add("hover")}else{if(hoveredCard){hoveredCard.material.opacity=0.04;hoveredCard=null}cursorEl.classList.remove("hover")}holoMeshes.forEach((mesh,i)=>{if(REDUCED_MOTION){mesh.material.opacity=0.95;return}mesh.userData.glitchTimer-=0.016;if(mesh.userData.glitchTimer<=0){mesh.userData.glitchTimer=2.5+Math.random()*7;mesh.userData.glitching=true;mesh.userData.glitchEnd=t+0.08+Math.random()*0.1}if(mesh.userData.glitching){if(t<mesh.userData.glitchEnd){mesh.position.x=mesh.userData.baseX+(Math.random()-0.5)*0.09;mesh.position.y=mesh.userData.baseY+(Math.random()-0.5)*0.05;mesh.material.opacity=0.72+Math.random()*0.28}else{mesh.userData.glitching=false;mesh.position.set(mesh.userData.baseX,mesh.userData.baseY,mesh.userData.baseZ);mesh.material.opacity=1.0}}else{mesh.material.opacity=0.93+Math.sin(t*1.6+i*2.1)*0.07}});holoBack.forEach((mesh,i)=>{mesh.material.opacity=REDUCED_MOTION?0.35:0.3+Math.sin(t*1.2+i*1.7)*0.07});renderer.render(scene,camera)}animate();
+if(scrollY<=INTRO_END){const topY=STAIR_TOP+2,eh=ease(heroT);camAngle=0.1+(ORBIT0-0.1)*heroT*heroT*heroT;camRadius=9+9*eh;camY=topY-(topY-10)*eh;lookY=camY-(2-0.5*eh)}else if(scrollY<=PROJ_END){const cp=ease(projT);camAngle=ORBIT0+cp*Math.PI*2.0;camRadius=18-cp*2;camY=10-cp*(N*STEP_H*0.92);lookY=camY-1.5}else{const eo=ease(outroT);camAngle=ORBIT0+Math.PI*2.0+eo*0.4;camRadius=16+eo*6;camY=(10-N*STEP_H*0.92)+eo*8.856;lookY=camY-(1.5+1.5*eo)}camera.position.set(Math.sin(camAngle)*camRadius,camY,Math.cos(camAngle)*camRadius);if(leaving){/* fly most of the way to the card and turn to face it */const k=ease(Math.min(1,(t-leaving.start)/0.5));stepCards[leaving.i].getWorldPosition(leaveCard);leaveLook.set(0,lookY,0).lerp(leaveCard,k);camera.position.lerp(leaveCard,k*0.75);camera.lookAt(leaveLook)}else camera.lookAt(0,lookY,0);if(outroT>0)camera.setViewOffset(innerWidth,innerHeight,-outroT*innerWidth*0.28,0,innerWidth,innerHeight);else if(camera.view&&camera.view.enabled)camera.clearViewOffset();if(!REDUCED_MOTION){pillarGroup.rotation.y=t*0.025;stairGroup.rotation.y=t*0.025}const activeStep=Math.round(ease(projT)*(N-1)),displayStep=N-1-activeStep,inProjects=scrollY>INTRO_END&&scrollY<=PROJ_END;mobileProjectCard.classList.toggle("visible",inProjects);if(inProjects&&(mobileProjectIndex!==displayStep||!document.getElementById("mp-title").textContent)){mobileProjectCard.classList.remove("card-changed");void mobileProjectCard.offsetWidth;mobileProjectCard.classList.add("card-changed");mobileProjectIndex=displayStep;const mp=PROJECTS[displayStep];document.getElementById("mp-index").textContent=(activeStep+1)+" of "+N;document.getElementById("mp-title").textContent=mp.title;document.getElementById("mp-sub").textContent=mp.sub}for(let i=0;i<N;i++){const d=document.getElementById("dot-"+i);if(d)d.className="scroll-dot"+(inProjects&&i===activeStep?" active":"")}raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length){const c=hits[0].object;if(hoveredCard!==c){if(hoveredCard)hoveredCard.material.opacity=0.04;hoveredCard=c}hoveredCard.material.opacity=0.11+Math.sin(t*4)*0.03;cursorEl.classList.add("hover")}else{if(hoveredCard){hoveredCard.material.opacity=0.04;hoveredCard=null}cursorEl.classList.remove("hover")}holoMeshes.forEach((mesh,i)=>{if(REDUCED_MOTION){mesh.material.opacity=0.95;return}mesh.userData.glitchTimer-=0.016;if(mesh.userData.glitchTimer<=0){mesh.userData.glitchTimer=2.5+Math.random()*7;mesh.userData.glitching=true;mesh.userData.glitchEnd=t+0.08+Math.random()*0.1}if(mesh.userData.glitching){if(t<mesh.userData.glitchEnd){mesh.position.x=mesh.userData.baseX+(Math.random()-0.5)*0.09;mesh.position.y=mesh.userData.baseY+(Math.random()-0.5)*0.05;mesh.material.opacity=0.72+Math.random()*0.28}else{mesh.userData.glitching=false;mesh.position.set(mesh.userData.baseX,mesh.userData.baseY,mesh.userData.baseZ);mesh.material.opacity=1.0}}else{mesh.material.opacity=0.93+Math.sin(t*1.6+i*2.1)*0.07}});holoBack.forEach((mesh,i)=>{mesh.material.opacity=REDUCED_MOTION?0.35:0.3+Math.sin(t*1.2+i*1.7)*0.07});renderer.render(scene,camera)}animate();
 } catch(error) {
   // GPU/CDN failure must not make the portfolio or its navigation disappear.
   console.warn("3D view unavailable; showing accessible project list.",error);
