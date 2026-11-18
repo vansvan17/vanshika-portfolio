@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>research · vanshika turakhia</title>
+<meta name="description" content="Vanshika Turakhia's research: real-time scheduling with FreeRTOS on a Raspberry Pi 4, batched updates to DomLock hierarchies, and a heap pattern that runs 5.6x slower."/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='9' fill='%230f1012'/%3E%3Cpath d='M10 13h11l11 30 11-30h11L38 52H26Z' fill='%2383c7ff'/%3E%3C/svg%3E"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="domain.css"/>
+</head>
+<body>
+<nav>
+  <a id="nav-name" href="index.html">Vanshika Turakhia</a>
+  <div id="nav-links">
+    <a class="nav-link" href="index.html#research">Tower</a>
+    <a class="nav-link" href="index.html#about">About</a>
+  </div>
+</nav>
+<main>
+  <div class="kicker">Floor 3 / 5</div>
+  <h1>Research</h1>
+  <p class="intro">Questions I'm chasing that don't have answers yet.</p>
+
+  <section class="section">
+    <div class="item">
+      <h3>Keeping urgent jobs on time</h3>
+      <div class="meta">Real-time scheduling · in progress</div>
+      <p>When a small computer runs a machine, some jobs can't be late: a motor controller has to answer on time, every time. I'm testing whether a different way of letting urgent jobs cut the line makes that timing steadier on a Raspberry Pi, compared with the tricks people already use.</p>
+      <div class="tech">FreeRTOS · AArch64 on Raspberry Pi 4 · preemption threshold vs temporary priority raise vs scheduler suspension · cycle-counter instrumentation for latency and missed deadlines · cache-interference runs under way</div>
+    </div>
+    <div class="item">
+      <h3>Editing a tree that won't sit still</h3>
+      <div class="meta">Concurrent data structures · paper in progress</div>
+      <p>Picture a huge family tree or folder structure that lots of people change at once. DomLock is an existing way to let them work without stepping on each other. I'm studying how to apply many changes together in one batch, safely, while the shape of the tree itself keeps changing.</p>
+      <div class="tech">C++20 · DomLock · batched edge insert/delete on a DAG · prepare / validate / merge / apply deltas · runs at 1M–10M nodes · exact model and Python oracle as cross-checks</div>
+      <a class="link" href="https://github.com/vansvan17/dynamic-hierarchy-deltas" target="_blank" rel="noopener">View source &rarr;</a>
+    </div>
+    <div class="item">
+      <h3>When the shortcut gets slow</h3>
+      <div class="meta">Data structures · in progress</div>
+      <p>Lots of software keeps a running list and constantly asks "what's next?", like a server tracking which connections have timed out. The standard tool for this uses a clever shortcut that's usually faster. I found a pattern where it gets over five times slower, and it's the pattern those servers actually create. I'm working out exactly why.</p>
+      <div class="tech">C++20 · d-ary heap from scratch vs libc++ std::priority_queue · bottom-up (Floyd) pop 5.6× slower at 16M when pushes land near the top · settle depth ≈ log₂S / log₂N · algorithm and API effects measured separately</div>
+    </div>
+  </section>
+
+  <footer class="floors">
+    <a href="competitive-programming.html">&uarr; Floor 2: competitive programming</a>
+    <a class="back" href="index.html#research">&larr; Back to the tower</a>
+    <a href="security.html">Floor 4: cybersecurity &darr;</a>
+  </footer>
+</main>
+</body>
+</html>
