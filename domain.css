@@ -1,0 +1,40 @@
+/* Shared style for the five floor pages (low-level, competitive-programming,
+   research, security, electronics). Same colours and type as the tower. */
+*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{text-transform:lowercase}
+html,body{background:#0f1012}
+body{font-family:"Space Grotesk",sans-serif;color:rgba(218,233,248,0.88);min-height:100vh}
+/* faint scanlines, like the tower's crt overlay */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(131,199,255,0.018) 3px,rgba(131,199,255,0.018) 4px)}
+nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:28px 40px;font-family:"Space Mono",monospace;background:linear-gradient(180deg,#0f1012 70%,rgba(15,16,18,0))}
+#nav-name{font-size:11px;letter-spacing:.25em;color:rgba(226,240,255,0.9);text-decoration:none}
+#nav-links{display:flex;gap:28px}
+.nav-link{font-size:10px;letter-spacing:.18em;color:rgba(131,199,255,0.45);text-decoration:none;padding:4px 0;transition:color .2s}
+.nav-link:hover{color:#83c7ff}
+main{width:min(680px,100%);margin:0 auto;padding:48px 24px 80px}
+.kicker{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.3em;color:rgba(131,199,255,0.8);margin-bottom:14px}
+h1{font-size:clamp(40px,8vw,64px);font-weight:700;letter-spacing:-.03em;line-height:1.02;color:#e7f3ff;margin-bottom:16px}
+.intro{font-size:15px;line-height:1.7;margin-bottom:56px;max-width:540px}
+.section{margin-bottom:52px}
+.label{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.3em;color:rgba(131,199,255,0.92);margin-bottom:18px}
+.item{border-left:1px solid rgba(131,199,255,0.25);padding:4px 0 4px 20px;margin-bottom:30px}
+.item h3{font-size:18px;font-weight:500;color:#cfe6ff;margin-bottom:4px;letter-spacing:.01em}
+.item .meta{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;color:rgba(131,199,255,0.85);margin-bottom:8px}
+.item p{font-size:14px;line-height:1.7}
+.item .tech{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.06em;line-height:1.9;color:rgba(131,199,255,0.6);margin-top:10px}
+.link{display:inline-block;margin-top:12px;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;color:#83c7ff;text-decoration:none;padding:11px 18px;border:1px solid rgba(131,199,255,0.35);transition:background .2s,border-color .2s,transform .2s}
+.link:hover{background:rgba(131,199,255,0.08);border-color:rgba(131,199,255,0.7);transform:translateY(-3px)}
+.stat-row{display:flex;gap:36px;flex-wrap:wrap;margin-bottom:40px}
+.stat .num{font-size:40px;font-weight:700;color:#e7f3ff;letter-spacing:-.02em;line-height:1}
+.stat .lbl{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em;color:rgba(131,199,255,0.8);margin-top:8px}
+/* bottom of the page: neighbouring floors and the way back up */
+.floors{border-top:1px solid rgba(131,199,255,0.15);padding-top:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.floors a{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.16em;color:rgba(131,199,255,0.7);text-decoration:none;padding:11px 0}
+.floors a:hover{color:#83c7ff}
+.floors .back{color:#83c7ff;border:1px solid rgba(131,199,255,0.35);padding:11px 18px}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+main>*{animation:rise .45s both}
+main>*:nth-child(2){animation-delay:.05s}main>*:nth-child(3){animation-delay:.1s}main>*:nth-child(n+4){animation-delay:.15s}
+@media (prefers-reduced-motion:reduce){main>*{animation:none}.link:hover{transform:none}}
+@media (max-width:600px){nav{padding:20px}#nav-links{gap:16px}main{padding:28px 20px 60px}.stat-row{gap:28px}.floors{flex-direction:column;gap:4px}.floors .back{align-self:flex-start;margin-top:8px}}
+@media (pointer:coarse){.nav-link,.link,.floors a{min-height:44px;display:inline-flex;align-items:center}}

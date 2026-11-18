@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>low level · vanshika turakhia</title>
+<meta name="description" content="Vanshika Turakhia's low-level C++ work: merged fixes in Qualcomm's eld linker and spdlog, an epoll HTTP server, a vectorized query engine, a sharded allocator, a lock-free queue and a small JIT compiler."/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='9' fill='%230f1012'/%3E%3Cpath d='M10 13h11l11 30 11-30h11L38 52H26Z' fill='%2383c7ff'/%3E%3C/svg%3E"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="domain.css"/>
+</head>
+<body>
+<nav>
+  <a id="nav-name" href="index.html">Vanshika Turakhia</a>
+  <div id="nav-links">
+    <a class="nav-link" href="index.html#low-level">Tower</a>
+    <a class="nav-link" href="index.html#about">About</a>
+  </div>
+</nav>
+<main>
+  <div class="kicker">Floor 1 / 5</div>
+  <h1>Low level</h1>
+  <p class="intro">The part of software closest to the machine: memory, threads, sockets, linkers. I build these from scratch, measure them, and keep the number.</p>
+
+  <section class="section">
+    <div class="label">Merged upstream</div>
+    <div class="item">
+      <h3>eld, Qualcomm's embedded linker</h3>
+      <div class="meta">Open source · C++ · merged Sep 2026</div>
+      <p>Plugins that hook in just before the linker writes its output were being told the wrong link state. Fixed the state, and tightened the plugin test so it fails if that hook ever sees a different one.</p>
+      <a class="link" href="https://github.com/qualcomm/eld/pull/1752" target="_blank" rel="noopener">View PR &rarr;</a>
+    </div>
+    <div class="item">
+      <h3>spdlog</h3>
+      <div class="meta">Open source · C++ · merged Oct 2026</div>
+      <p>The hourly log sink picked the file name from each message's timestamp but the next rotation time from the wall clock. Messages stamped ahead of the clock kept rotating into the same file, which could wipe earlier logs. Now both come from the message time, with no extra work on the normal path.</p>
+      <a class="link" href="https://github.com/gabime/spdlog/pull/3677" target="_blank" rel="noopener">View PR &rarr;</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="label">Built from scratch</div>
+    <div class="item">
+      <h3>tinyjit</h3>
+      <div class="meta">Compiler · C++ · no dependencies</div>
+      <p>A small programming language and everything that makes it run. Usually a program is read and acted on one line at a time, which is slow. This one turns the busy parts into the processor's own instructions while the program is running, so it gets close to the speed of compiled C.</p>
+      <div class="tech">~4,000 lines · Pratt parser · SSA and optimization passes · register VM with mark-sweep GC · ARM64 JIT with linear-scan register allocation · writes Mach-O objects · fib(32): 27 ms interpreted, 6 ms JIT-compiled on an M5</div>
+      <a class="link" href="https://github.com/vansvan17/tinyjit" target="_blank" rel="noopener">View source &rarr;</a>
+    </div>
+    <div class="item">
+      <h3>Arena allocator</h3>
+      <div class="meta">Memory · C++20</div>
+      <p>A first-fit allocator over raw mmap memory with intrusive free lists and boundary-tag coalescing. 32 cache-line-aligned shards and an ownership prefix let any thread free memory another thread allocated, without one global lock.</p>
+      <div class="tech">21.0 ns per 64-byte allocate/free pair at 16 threads, across 10 runs · cross-thread stress tests pass ASan, UBSan and TSan</div>
+      <a class="link" href="https://github.com/vansvan17/allocator" target="_blank" rel="noopener">View source &rarr;</a>
+    </div>
+    <div class="item">
+      <h3>Lock-free MPMC queue</h3>
+      <div class="meta">Concurrency · C++20</div>
+      <p>A Michael–Scott queue: many threads put things in and take things out at once, using compare-and-swap instead of locks. Head and tail live on separate cache lines; freeing nodes is deferred on purpose so no thread ever reads reused memory.</p>
+      <div class="tech">4 producers / 4 consumers · 400,000 values checked by exact count and sum under ThreadSanitizer</div>
+      <a class="link" href="https://github.com/vansvan17/lock-free-mpmc-queue" target="_blank" rel="noopener">View source &rarr;</a>
+    </div>
+    <div class="item">
+      <h3>Pulse</h3>
+      <div class="meta">Networking · C++20 · Linux</div>
+      <p>An HTTP/1.1 server built around an edge-triggered epoll loop: nonblocking sockets, incremental parsing, keep-alive, idle timers and writes that resume after EAGAIN. Static files go out with sendfile; SO_REUSEPORT runs independent workers.</p>
+      <div class="tech">~41,000 requests/second on one worker over loopback</div>
+      <a class="link" href="https://github.com/vansvan17/Pulse" target="_blank" rel="noopener">View source &rarr;</a>
+    </div>
+    <div class="item">
+      <h3>Query engine</h3>
+      <div class="meta">Databases · C++20</div>
+      <p>The same query plans, run one row at a time and then in batches. It's a small engine for seeing why per-row overhead and data locality decide how fast analytical queries go.</p>
+      <div class="tech">vectorized path 12.7× faster than the iterator baseline on 10M rows</div>
+      <a class="link" href="https://github.com/vansvan17/query-engine" target="_blank" rel="noopener">View source &rarr;</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="label">Backend and data</div>
+    <div class="item">
+      <h3>Argus</h3>
+      <div class="meta">Observability · Python</div>
+      <p>An observability pipeline for LLM apps: request events stream through Kafka into ClickHouse, and latency, token use, cost and eval results show up in Grafana. The hard part was deciding what was worth measuring.</p>
+      <div class="tech">FastAPI · Kafka · ClickHouse · Grafana</div>
+      <a class="link" href="https://github.com/vansvan17/argus" target="_blank" rel="noopener">View source &rarr;</a>
+    </div>
+    <div class="item">
+      <h3>Confess</h3>
+      <div class="meta">Retrieval · TypeScript</div>
+      <p>A multi-tenant RAG platform that scores how sure it is, refuses to answer when the documents don't support it, and clusters the questions it couldn't answer to show what documentation is missing.</p>
+      <div class="tech">pgvector per-tenant namespaces · BullMQ workers · Redis</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="label">Open, under review</div>
+    <div class="item">
+      <h3>Valkey</h3>
+      <div class="meta">Open source · C · PR open</div>
+      <p>Renamed include guards that started with a double underscore, which the C standard reserves for the compiler, across 47 headers.</p>
+    </div>
+    <div class="item">
+      <h3>KubeVela</h3>
+      <div class="meta">Open source · Go · PRs open</div>
+      <p>A Close() API so a cache's background sweeper goroutine can be shut down instead of leaking, and a fix so health-check evaluation errors are returned instead of swallowed. Also shortlisted for a CNCF LFX mentorship on LRU eviction for native Helm providers.</p>
+    </div>
+  </section>
+
+  <footer class="floors">
+    <span></span>
+    <a class="back" href="index.html#low-level">&larr; Back to the tower</a>
+    <a href="competitive-programming.html">Floor 2: competitive programming &darr;</a>
+  </footer>
+</main>
+</body>
+</html>

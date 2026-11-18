@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>vanshika turakhia | systems · databases · observability</title>
-<meta name="description" content="C++ systems work: epoll HTTP server, vectorized query engine (12.7x over an iterator baseline), lock-free MPMC queue, arena allocator, LLM observability. Open source contributor to Valkey and KubeVela."/>
+<title>vanshika turakhia | systems · security · research · hardware</title>
+<meta name="description" content="CS student at BITS Pilani. Low-level C++ with merged fixes in Qualcomm's eld linker and spdlog, ICPC 2026 regionalist and Codeforces Expert, a 24-week offensive security course, research on real-time and concurrent systems, and electronics."/>
 <meta property="og:title" content="Vanshika Turakhia"/>
-<meta property="og:description" content="Systems · Databases · Observability. C++ event loops, query execution, concurrency, and memory. Contributor to Valkey and KubeVela (CNCF)."/>
+<meta property="og:description" content="Low level · competitive programming · research · cybersecurity · electronics. Merged into Qualcomm's eld and spdlog; ICPC 2026 regionalist; Codeforces Expert."/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://vanshika.dev"/>
+<meta property="og:url" content="https://vanshikaturakhia.dev"/>
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Vanshika Turakhia"/>
-<meta name="twitter:description" content="Systems · Databases · Observability"/>
+<meta name="twitter:description" content="Low level · competitive programming · research · cybersecurity · electronics"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='9' fill='%230f1012'/%3E%3Cpath d='M10 13h11l11 30 11-30h11L38 52H26Z' fill='%2383c7ff'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
@@ -61,29 +61,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 .skill-line{margin-bottom:10px;font-size:13px;line-height:1.7}
 .skill-line .k{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:lowercase;color:rgba(131,199,255,0.92);margin-right:12px}
 .skill-line .v{color:rgba(218,233,248,0.88)}
-#contact-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+#contact-row,#floor-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
 .contact-link{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:lowercase;color:#83c7ff;text-decoration:none;padding:11px 18px;border:1px solid rgba(131,199,255,0.35);transition:background .2s,border-color .2s}
+a.nav-link{text-decoration:none}
 .contact-link:hover{background:rgba(131,199,255,0.08);border-color:rgba(131,199,255,0.7)}
 #scroll-track{position:fixed;right:32px;top:50%;transform:translateY(-50%);z-index:320;display:flex;flex-direction:column;align-items:center;gap:6px}
 .scroll-dot{width:3px;height:3px;background:rgba(131,199,255,0.2);transition:background .3s,transform .3s}
 .scroll-dot.active{background:#83c7ff;transform:scaleX(4)}
-#side-panel{position:fixed;top:0;right:-420px;width:380px;height:100vh;z-index:360;background:rgba(12,13,15,0.92);border-left:1px solid rgba(131,199,255,0.2);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);transition:right .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;font-family:"Space Grotesk",sans-serif;overflow:hidden}
-#side-panel.open{right:0}
-#side-panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(131,199,255,0.018) 3px,rgba(131,199,255,0.018) 4px)}
-#side-panel::after{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(131,199,255,0.7),transparent)}
-#sp-inner{position:relative;z-index:1;padding:36px 32px 40px;height:100%;overflow-y:auto;display:flex;flex-direction:column}
-#sp-back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:lowercase;color:rgba(131,199,255,0.45);padding:0;margin-bottom:40px;transition:color .2s;width:fit-content}
-#sp-back:hover{color:#83c7ff}
-#sp-back::before{content:"←";font-size:12px;letter-spacing:0}
-#sp-index{font-family:"Space Mono",monospace;font-size:10px;color:rgba(131,199,255,0.8);letter-spacing:.25em;margin-bottom:12px}
-#sp-title{font-size:40px;font-weight:700;color:#cfe6ff;letter-spacing:-.02em;line-height:1;margin-bottom:6px}
-#sp-sub{font-size:13px;color:rgba(190,218,245,0.85);letter-spacing:.04em;margin-bottom:28px}
-#sp-divider{width:44px;height:1px;background:rgba(131,199,255,0.45);margin-bottom:28px}
-#sp-desc{white-space:pre-line;font-size:14px;color:rgba(218,233,248,0.9);line-height:1.8;margin-bottom:28px;flex:1}
-#sp-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:32px}
-.sp-tag{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:lowercase;padding:5px 10px;border:1px solid rgba(131,199,255,0.3);color:rgba(131,199,255,0.85)}
-#sp-link{display:inline-flex;align-items:center;gap:10px;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:lowercase;color:#83c7ff;text-decoration:none;padding:11px 18px;border:1px solid rgba(131,199,255,0.35);transition:background .2s,border-color .2s;width:fit-content}
-#sp-link:hover{background:rgba(131,199,255,0.08);border-color:rgba(131,199,255,0.7)}
 #crt{position:fixed;inset:0;z-index:300;pointer-events:none}
 #crt::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px)}
 #crt::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.55) 100%)}
@@ -110,9 +94,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
   #mp-sub{display:block;font-size:11px;line-height:1.45;color:rgba(218,233,248,.7)}
   #mp-open{display:block;margin-top:10px;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.16em;text-transform:lowercase;color:#83c7ff}
   #scroll-track{right:10px}
-  #side-panel{width:100vw;right:-100vw}
-  #sp-inner{padding:26px 22px 34px}
-  #sp-title{font-size:34px}
   #outro-inner{width:100vw;padding:84px 20px 40px;background:rgba(13,14,16,.97)}
 }
 #hero-tag{max-width:min(640px,86vw);line-height:1.6;text-align:center}
@@ -127,30 +108,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:340;display:flex;align-items:cen
 
 /* Keep the scene intact; adapt the controls and overlays to touch screens. */
 #canvas{touch-action:pinch-zoom}
-#outro-inner,#sp-inner{overscroll-behavior-y:contain;touch-action:pan-y pinch-zoom;-webkit-overflow-scrolling:touch}
+#outro-inner{overscroll-behavior-y:contain;touch-action:pan-y pinch-zoom;-webkit-overflow-scrolling:touch}
 /* Own About's touch gesture so it can cross from text back into the scene. */
 #outro-inner{touch-action:pinch-zoom}
 .static-mode #outro-inner{touch-action:pan-y pinch-zoom}
-#side-panel{height:100dvh}
-#sp-inner>*{flex-shrink:0}
-#sp-inner{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
 button:focus-visible,a:focus-visible{outline:2px solid #83c7ff;outline-offset:5px}
 .nav-link{position:relative}
 .nav-link::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:#83c7ff;transform:scaleX(0);transform-origin:left;transition:transform .25s}
 .nav-link:hover::after,.nav-link:focus-visible::after{transform:scaleX(1)}
-.contact-link,#sp-link{transition:transform .2s,background .2s,border-color .2s}
-.contact-link:hover,#sp-link:hover{transform:translateY(-3px)}
+.contact-link{transition:transform .2s,background .2s,border-color .2s}
+.contact-link:hover{transform:translateY(-3px)}
 @keyframes ui-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes line-enter{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 #boot.done~#hero h1{animation:ui-enter .7s both}
 #boot.done~#hero #hero-tag{animation:ui-enter .7s .1s both}
 #boot.done~#hero #hero-sub{animation:ui-enter .7s .2s both}
-#side-panel.open #sp-divider{transform-origin:left;animation:line-enter .55s .15s both}
-#side-panel.open #sp-desc,#side-panel.open #sp-tags{animation:ui-enter .45s .12s both}
 #mobile-project-card.card-changed #mp-title,#mobile-project-card.card-changed #mp-sub{animation:ui-enter .3s both}
 @media (pointer:coarse){
   #cursor{display:none}
-  .nav-link,#sp-back,#project-back,.contact-link,#sp-link{min-height:44px}
+  .nav-link,#project-back,.contact-link{min-height:44px}
   .nav-link{min-width:44px}
 }
 @media (max-width:600px){
@@ -158,7 +134,6 @@ button:focus-visible,a:focus-visible{outline:2px solid #83c7ff;outline-offset:5p
   #project-back{top:calc(68px + env(safe-area-inset-top,0px))}
   #mobile-project-card{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
   #outro-inner{padding-top:calc(90px + env(safe-area-inset-top,0px));padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
-  #sp-inner{padding-top:calc(24px + env(safe-area-inset-top,0px))}
   #hero-sub{font-size:10px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -166,7 +141,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #83c7ff;outline-offset:5p
 }
 
 html.static-mode,html.static-mode body{height:auto;overflow:auto}
-.static-mode #canvas,.static-mode #cursor,.static-mode #scroll-track,.static-mode #project-back,.static-mode #mobile-project-card,.static-mode #side-panel,.static-mode #hero-scroll{display:none!important}
+.static-mode #canvas,.static-mode #cursor,.static-mode #scroll-track,.static-mode #project-back,.static-mode #mobile-project-card,.static-mode #hero-scroll{display:none!important}
 .static-mode nav{background:rgba(15,16,18,.96)}
 .static-mode #hero{position:relative;min-height:100svh;padding:110px 20px 70px;opacity:1!important}
 .static-mode #outro{position:relative;opacity:1!important;pointer-events:auto}
@@ -187,90 +162,48 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
   <div id="nav-name">Vanshika Turakhia</div>
   <div id="nav-links">
     <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('top',event)">Top</button>
-    <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('projects',event)">Projects</button>
-    <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('hardware',event)">Hardware</button>
+    <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('projects',event)">Floors</button>
     <button type="button" class="nav-link portfolio-control" onclick="portfolioNavigate('about',event)">About</button>
   </div>
 </nav>
 <button id="project-back" class="portfolio-control" type="button" aria-label="Back to introduction" onclick="portfolioNavigate('top',event)">&larr; Back to intro</button>
-<button id="mobile-project-card" type="button" aria-label="Open current project">
-  <span id="mp-index"></span><strong id="mp-title"></strong><span id="mp-sub"></span><span id="mp-open">Tap for details &rarr;</span>
+<button id="mobile-project-card" type="button" aria-label="Open this floor">
+  <span id="mp-index"></span><strong id="mp-title"></strong><span id="mp-sub"></span><span id="mp-open">Tap to open &rarr;</span>
 </button>
 <div id="hero">
-  <div id="hero-kicker">Systems · Databases · Observability</div>
+  <div id="hero-kicker">Systems · Security · Research · Hardware</div>
   <h1>Vanshika<br/>Turakhia</h1>
-  <div id="hero-tag">I build systems that move data quickly, stay correct under pressure, and explain what happened when they don't.</div>
-  <div id="hero-sub">CS student focused on C++, databases, concurrency, and backend infrastructure.</div>
+  <div id="hero-tag">I like finding out how things really work, from a linker to a lock-free queue to a circuit board, and then measuring them.</div>
+  <div id="hero-sub">CS student at BITS Pilani · ICPC 2026 regionalist · Codeforces Expert</div>
   <div id="hero-scroll">scroll</div>
 </div>
 <div id="outro">
   <div id="outro-inner">
-    <div class="outro-section" id="hardware">
-      <div class="outro-label">Hardware, though?</div>
-      <p class="outro-lede">Most of what's above lives on servers. This part you can touch.</p>
-      <div class="outro-item">
-        <h3>Point-to-listen museum case</h3>
-        <div class="meta">Museum exhibit · in progress</div>
-        <p>A display case you talk to by pointing. Hold a finger over an object for three seconds and its story plays in the headphones, while the screen under the glass glows beneath it. No buttons, no touchscreen: a camera above the case watches for your finger, and a passing hand does nothing.</p>
-        <div class="tech">Raspberry Pi 4 · Camera Module 3 NoIR · Python · OpenCV · background subtraction, fingertip = the point reaching farthest in · camera-to-TV calibration · ~11 fps at 960×540</div>
-      </div>
-    </div>
-    <div class="outro-section" id="research">
-      <div class="outro-label">Research</div>
-      <p class="outro-lede">Questions I'm chasing that don't have answers yet.</p>
-      <div class="outro-item">
-        <h3>Keeping urgent jobs on time</h3>
-        <div class="meta">Real-time scheduling · in progress</div>
-        <p>When a small computer runs a machine, some jobs can't be late: a motor controller has to answer on time, every time. I'm testing whether a different way of letting urgent jobs cut the line makes that timing steadier on a Raspberry Pi, compared with the tricks people already use.</p>
-        <div class="tech">FreeRTOS · AArch64 on Raspberry Pi 4 · preemption threshold vs temporary priority raise vs scheduler suspension · cycle-counter instrumentation for latency and missed deadlines · hardware runs pending</div>
-      </div>
-      <div class="outro-item">
-        <h3>Editing a tree that won't sit still</h3>
-        <div class="meta">Concurrent data structures · in progress</div>
-        <p>Picture a huge family tree or folder structure that lots of people change at once. DomLock is an existing way to let them work without stepping on each other. I'm studying how to apply many changes together in one batch, safely, while the shape of the tree itself keeps changing.</p>
-        <div class="tech">C++20 · DomLock · batched edge insert/delete on a DAG · prepare / validate / merge / apply deltas · CSR engine run at 1M–10M nodes · exact model and Python oracle as cross-checks</div>
-      </div>
-      <div class="outro-item">
-        <h3>When the shortcut gets slow</h3>
-        <div class="meta">Data structures · in progress</div>
-        <p>Lots of software keeps a running list and constantly asks "what's next?", like a server tracking which connections have timed out. The standard tool for this uses a clever shortcut that's usually faster. I found a pattern where it gets over five times slower, and it's the pattern those servers actually create. I'm working out exactly why.</p>
-        <div class="tech">C++20 · d-ary heap from scratch vs libc++ std::priority_queue · bottom-up (Floyd) pop 5.6× slower at 16M when pushes land near the top · settle depth ≈ log₂S / log₂N · algorithm and API effects measured separately</div>
-      </div>
-    </div>
     <div class="outro-section">
       <div class="outro-label">The short version</div>
       <p class="outro-lede">I like building interactive things, but not everyone has time to explore a portfolio. Here is the short version:</p>
       <ul class="sum-list">
-        <li>I build C++ systems projects around event loops, concurrency, memory, and database execution.</li>
-        <li>I have built a vectorized query engine that showed a 12.7x improvement over an iterator baseline on the same workload.</li>
-        <li>I have built an observability prototype using Kafka, ClickHouse, FastAPI, and Grafana.</li>
-        <li>I contribute to open source systems software including Valkey and KubeVela.</li>
+        <li>I write low-level C++: a lock-free queue, a sharded allocator, an epoll HTTP server, a vectorized query engine and a small JIT compiler.</li>
+        <li>My fixes are merged into Qualcomm's eld linker and spdlog.</li>
+        <li>ICPC 2026 Asia regionalist (Amritapuri), Codeforces Expert with a max of 1604, and 1000+ problems solved.</li>
+        <li>I built a 24-week offensive security course, from web hacking down to binary exploitation and fuzzing.</li>
+        <li>I research real-time scheduling, concurrent data structures and heaps, and I design PCBs and analog circuits.</li>
         <li>I take on small, clearly scoped backend, data, integration, and reliability engagements.</li>
       </ul>
     </div>
-    <div class="outro-section">
-      <div class="outro-label">Open Source</div>
-      <div class="outro-item">
-        <h3>Valkey</h3>
-        <div class="meta">Contributor · C</div>
-        <p>Implemented a trusted connection-pool path so designated administrative and monitoring clients can still connect when maxclients is exhausted, avoiding an operational deadlock during incidents.</p>
-      </div>
-      <div class="outro-item">
-        <h3>KubeVela</h3>
-        <div class="meta">Contributor · Go · Kubernetes</div>
-        <p>Added lifecycle-management APIs for explicit goroutine shutdown in long-running controller processes. Also shortlisted for a CNCF LFX mentorship project around LRU eviction for native Helm providers.</p>
-      </div>
-    </div>
-    <div class="outro-section">
-      <div class="outro-label">Competitive Programming</div>
-      <div class="stat-row">
-        <div class="stat"><div class="num">1604</div><div class="lbl">CF max rating · Specialist</div></div>
-        <div class="stat"><div class="num">300+</div><div class="lbl">Problems solved</div></div>
+    <div class="outro-section" id="floors">
+      <div class="outro-label">The floors</div>
+      <div id="floor-row">
+        <a class="contact-link" href="low-level.html">Low level</a>
+        <a class="contact-link" href="competitive-programming.html">Competitive programming</a>
+        <a class="contact-link" href="research.html">Research</a>
+        <a class="contact-link" href="security.html">Cybersecurity</a>
+        <a class="contact-link" href="electronics.html">Electronics</a>
       </div>
     </div>
     <div class="outro-section" id="about">
       <div class="outro-label">About</div>
-      <p class="outro-prose">I'm Vanshika, a CS student who likes the part of software where tradeoffs are real: concurrency, databases, systems performance, observability, and infrastructure.</p>
+      <p class="outro-prose">I'm Vanshika, a CS student who likes the parts of computing where tradeoffs are real: concurrency, databases, real-time systems, security, and hardware.</p>
       <p class="outro-prose">I study Computer Science at BITS Pilani (B.Sc., expected 2029) and am based in Bengaluru, India.</p>
       <p class="outro-prose">I learn best by building close to the metal, measuring behaviour, finding the failure mode, and then making the design simpler. I'm currently looking to grow through systems-oriented internships, open source, and carefully scoped engineering work.</p>
     </div>
@@ -279,6 +212,7 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
       <div class="skill-line"><span class="k">Languages</span><span class="v">C++20 · Go · Python · TypeScript · SQL</span></div>
       <div class="skill-line"><span class="k">Systems</span><span class="v">epoll · mmap · sendfile · std::atomic · ASan · TSan · perf</span></div>
       <div class="skill-line"><span class="k">Infra</span><span class="v">Kafka · ClickHouse · PostgreSQL · Redis · Docker · Grafana</span></div>
+      <div class="skill-line"><span class="k">Hardware</span><span class="v">Raspberry Pi · FreeRTOS · OpenCV · PCB design · analog</span></div>
       <div class="skill-line"><span class="k">Also</span><span class="v">APIs · integrations · data ingestion · observability</span></div>
     </div>
     <div class="outro-section">
@@ -293,18 +227,6 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
   </div>
 </div>
 <div id="scroll-track"></div>
-<div id="side-panel">
-  <div id="sp-inner">
-    <button id="sp-back" type="button" aria-label="Close project details">Back</button>
-    <div id="sp-index"></div>
-    <div id="sp-title"></div>
-    <div id="sp-sub"></div>
-    <div id="sp-divider"></div>
-    <div id="sp-desc"></div>
-    <div id="sp-tags"></div>
-    <a id="sp-link" href="#" target="_blank" rel="noopener">View source</a>
-  </div>
-</div>
 <div id="crt"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -315,14 +237,15 @@ const REDUCED_MOTION=window.matchMedia("(prefers-reduced-motion: reduce)").match
    cannot overflow the card */
 function fitFont(c,txt,px,maxW,spec){let n=px;do{c.font=spec.replace("$",n);if(c.measureText(txt).width<=maxW)return;n-=2}while(n>12)}
 const ease=x=>x<0.5?2*x*x:1-Math.pow(-2*x+2,2)/2,easeInv=y=>y<0.5?Math.sqrt(y/2):1-Math.sqrt((1-y)/2);
-(function boot(){const el=document.getElementById("boot-text"),overlay=document.getElementById("boot"),lines=[["mounting /projects","ok"],["spawning renderer","ok"],["vanshika.dev",""]];if(REDUCED_MOTION){overlay.classList.add("done");return}let html="",li=0;function next(){if(li>=lines.length){setTimeout(()=>overlay.classList.add("done"),250);return}const[text,status]=lines[li];html+=text+(status?' <span class="ok">['+status+"]</span>":' <span id="boot-cursor"></span>')+"<br/>";el.innerHTML=html;li++;setTimeout(next,280)}next();const skip=()=>{overlay.classList.add("done");window.removeEventListener("keydown",skip);window.removeEventListener("click",skip)};window.addEventListener("keydown",skip);window.addEventListener("click",skip)})();
+(function boot(){const el=document.getElementById("boot-text"),overlay=document.getElementById("boot"),lines=[["mounting /projects","ok"],["spawning renderer","ok"],["vanshika.dev",""]];if(REDUCED_MOTION||location.hash.length>1){overlay.classList.add("done");return}let html="",li=0;function next(){if(li>=lines.length){setTimeout(()=>overlay.classList.add("done"),250);return}const[text,status]=lines[li];html+=text+(status?' <span class="ok">['+status+"]</span>":' <span id="boot-cursor"></span>')+"<br/>";el.innerHTML=html;li++;setTimeout(next,280)}next();const skip=()=>{overlay.classList.add("done");window.removeEventListener("keydown",skip);window.removeEventListener("click",skip)};window.addEventListener("keydown",skip);window.addEventListener("click",skip)})();
+/* One card per floor. The last entry is the top floor, the one people see first.
+   Each card opens its own page; slug is also the #hash that brings you back to it. */
 const PROJECTS=[
-{title:"Pulse",sub:"Edge-triggered HTTP server in C++20",desc:"A Linux HTTP/1.1 server built around an edge-triggered epoll loop, nonblocking sockets, incremental parsing, keep-alive, idle timers, and resumable writes after EAGAIN. Static responses use sendfile, while SO_REUSEPORT supports independent workers.\n\nMeasured approximately 41,000 requests/second in a one-worker loopback test.",tags:["C++20","Linux","epoll","sendfile","SO_REUSEPORT"],url:"https://github.com/vansvan17/Pulse"},
-{title:"Query Engine",sub:"Vectorized relational execution engine in C++20",desc:"A small relational engine implementing the same operator plans through iterator-based execution and vectorized execution. On a 10M-row benchmark, the vectorized path ran 12.7x faster than the iterator baseline.\n\nThe project is about execution models, data locality, batching, and why reducing per-tuple overhead matters for analytical workloads.",tags:["C++20","query execution","vectorization","OLAP"],url:"https://github.com/vansvan17/query-engine"},
-{title:"Argus",sub:"LLM observability and evaluation prototype",desc:"An observability pipeline for LLM applications. It records request-level events, streams them through Kafka, stores analytical data in ClickHouse, and makes latency, token use, cost, and evaluation results visible through dashboards.\n\nThe interesting problem was not just collecting telemetry. It was deciding what to measure, how to preserve useful context, and how to avoid producing expensive noise.",tags:["Python","FastAPI","Kafka","ClickHouse","Grafana"],url:"https://github.com/vansvan17/argus"},
-{title:"Confess",sub:"Multi-tenant RAG platform",desc:"Isolated workspaces with per-tenant vector namespacing via pgvector. Full ingestion-to-retrieval pipeline with confidence-aware scoring, refusal-based answering, and automated knowledge-gap detection by clustering failed queries. BullMQ workers, Redis caching, full observability stack.",tags:["TypeScript","pgvector","Redis","BullMQ"],url:"https://github.com/vansvan17/confess"},
-{title:"MPMC Queue",sub:"Lock-free concurrent queue using atomic CAS",desc:"A Michael-Scott multi-producer, multi-consumer queue implementing the two-CAS enqueue/dequeue protocol, cooperative tail advancement, and cache-line-separated head and tail atomics.\n\nA 4-producer / 4-consumer run verified 400,000 unique values by exact count and sum under ThreadSanitizer. Node reclamation is deliberately deferred until destruction to avoid unsafe address reuse.",tags:["C++20","std::atomic","lock-free","ThreadSanitizer"],url:"https://github.com/vansvan17/lock-free-mpmc-queue"},
-{title:"Arena Allocator",sub:"Sharded mmap-backed allocator",desc:"A first-fit allocator over raw mmap memory with intrusive free lists and boundary-tag coalescing. It uses 32 cache-line-aligned shards, acquire/release locks, and an ownership prefix for safe cross-thread frees without a global heap lock.\n\nMeasured 21.0 ns per 64-byte allocate/free pair at 16 threads across 10 local runs; cross-thread stress tests pass ASan, UBSan, and TSan.",tags:["C++20","mmap","32 shards","ASan / UBSan / TSan"],url:"https://github.com/vansvan17/allocator"},
+{slug:"electronics",title:"Electronics",sub:"PCB design, analog, things you can touch",desc:"PCB design and analog circuits, and a point-to-listen museum case: hold a finger over an object and its story plays.",tags:["Raspberry Pi","OpenCV","PCBs"],url:"electronics.html"},
+{slug:"security",title:"Cybersecurity",sub:"A 24-week offensive security course I built",desc:"A course from web hacking down to binary exploitation, reverse engineering and fuzzing, with a hands-on lab every week.",tags:["web","binary exploitation","fuzzing"],url:"security.html"},
+{slug:"research",title:"Research",sub:"Questions that don't have answers yet",desc:"Real-time scheduling with FreeRTOS on a Raspberry Pi 4, batched updates to DomLock hierarchies, and a heap pattern that runs 5.6x slower.",tags:["real-time","concurrency","data structures"],url:"research.html"},
+{slug:"competitive-programming",title:"Competitive Programming",sub:"ICPC 2026 regionalist · Codeforces Expert",desc:"ICPC 2026 Asia regionalist at Amritapuri, Codeforces max 1604 (Expert), 1000+ problems solved.",tags:["1604 max","1000+ solved","ICPC Amritapuri"],url:"competitive-programming.html"},
+{slug:"low-level",title:"Low Level",sub:"Merged into Qualcomm's linker and spdlog",desc:"Merged fixes in Qualcomm's eld linker and spdlog. A JIT compiler, a sharded allocator, a lock-free queue, an epoll HTTP server and a vectorized query engine.",tags:["C++20","lock-free","JIT"],url:"low-level.html"},
 ];
 try {
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("canvas"),antialias:true});
@@ -375,7 +298,7 @@ const baseEdge=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeome
 const stairGroup=new THREE.Group();scene.add(stairGroup);
 const stepCards=[],holoMeshes=[],holoBack=[];
 const LABEL_SS=2;/* supersample: draw at 2x, sample down -> crisp text */
-function makeLabel(proj,i,mirrored){const lc=document.createElement("canvas");lc.width=512*LABEL_SS;lc.height=352*LABEL_SS;const ctx=lc.getContext("2d");ctx.scale(LABEL_SS,LABEL_SS);ctx.clearRect(0,0,512,352);if(mirrored){ctx.save();ctx.translate(512,0);ctx.scale(-1,1)}for(let sl=0;sl<352;sl+=4){ctx.fillStyle="rgba(131,199,255,0.03)";ctx.fillRect(0,sl,512,2)}ctx.font='400 15px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.5)":"rgba(131,199,255,0.95)";ctx.fillText((i+1)+" / "+PROJECTS.length,22,34);fitFont(ctx,proj.title,58,468,'700 $px "Space Grotesk",sans-serif');ctx.fillStyle=mirrored?"rgba(226,240,255,0.55)":"rgba(231,243,255,1.0)";ctx.fillText(proj.title.toLowerCase(),22,108);ctx.fillStyle=mirrored?"rgba(131,199,255,0.4)":"#d2eaff";ctx.fillRect(22,120,56,2);fitFont(ctx,proj.sub,19,468,'400 $px "Space Grotesk",sans-serif');ctx.fillStyle=mirrored?"rgba(190,218,245,0.5)":"rgba(220,236,255,1.0)";ctx.fillText(proj.sub.toLowerCase(),22,152);ctx.font='400 14px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.4)":"rgba(210,234,255,0.95)";ctx.fillText(proj.tags.slice(0,3).join("  ·  ").toLowerCase(),22,192);ctx.font='400 11px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.2)":"rgba(131,199,255,0.7)";ctx.fillText(mirrored?proj.url.replace("https://",""):"click for details",22,320);if(mirrored)ctx.restore();const tex=new THREE.CanvasTexture(lc);tex.anisotropy=renderer.capabilities.getMaxAnisotropy();tex.minFilter=THREE.LinearMipmapLinearFilter;return tex}
+function makeLabel(proj,i,mirrored){const lc=document.createElement("canvas");lc.width=512*LABEL_SS;lc.height=352*LABEL_SS;const ctx=lc.getContext("2d");ctx.scale(LABEL_SS,LABEL_SS);ctx.clearRect(0,0,512,352);if(mirrored){ctx.save();ctx.translate(512,0);ctx.scale(-1,1)}for(let sl=0;sl<352;sl+=4){ctx.fillStyle="rgba(131,199,255,0.03)";ctx.fillRect(0,sl,512,2)}ctx.font='400 15px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.5)":"rgba(131,199,255,0.95)";ctx.fillText((PROJECTS.length-i)+" / "+PROJECTS.length,22,34);fitFont(ctx,proj.title,58,468,'700 $px "Space Grotesk",sans-serif');ctx.fillStyle=mirrored?"rgba(226,240,255,0.55)":"rgba(231,243,255,1.0)";ctx.fillText(proj.title.toLowerCase(),22,108);ctx.fillStyle=mirrored?"rgba(131,199,255,0.4)":"#d2eaff";ctx.fillRect(22,120,56,2);fitFont(ctx,proj.sub,19,468,'400 $px "Space Grotesk",sans-serif');ctx.fillStyle=mirrored?"rgba(190,218,245,0.5)":"rgba(220,236,255,1.0)";ctx.fillText(proj.sub.toLowerCase(),22,152);ctx.font='400 14px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.4)":"rgba(210,234,255,0.95)";ctx.fillText(proj.tags.slice(0,3).join("  ·  ").toLowerCase(),22,192);ctx.font='400 11px "Space Mono",monospace';ctx.fillStyle=mirrored?"rgba(131,199,255,0.2)":"rgba(131,199,255,0.7)";ctx.fillText(mirrored?"vanshikaturakhia.dev/"+proj.slug:"click to open",22,320);if(mirrored)ctx.restore();const tex=new THREE.CanvasTexture(lc);tex.anisotropy=renderer.capabilities.getMaxAnisotropy();tex.minFilter=THREE.LinearMipmapLinearFilter;return tex}
 PROJECTS.forEach((proj,i)=>{const t=i/(N-1),angle=t*SPIRAL-Math.PI*0.5,y=i*STEP_H-(N*STEP_H)/2+2,tx=Math.cos(angle)*RADIUS,tz=Math.sin(angle)*RADIUS;
 const treadGeo=new THREE.BoxGeometry(3.4,0.12,1.6);const tread=new THREE.Mesh(treadGeo,new THREE.MeshPhysicalMaterial({color:0x0f1114,roughness:0.06,transparent:true,opacity:0.85}));tread.position.set(tx,y,tz);tread.rotation.y=-angle+Math.PI/2;stairGroup.add(tread);
 const treadEdge=new THREE.LineSegments(new THREE.EdgesGeometry(treadGeo),new THREE.LineBasicMaterial({color:GOLD,transparent:true,opacity:0.55}));treadEdge.position.copy(tread.position);treadEdge.rotation.copy(tread.rotation);stairGroup.add(treadEdge);
@@ -394,12 +317,11 @@ const INTRO_LEN=300,PROJ_LEN=(N-1)*220,OUTRO_LEN=300,INTRO_END=INTRO_LEN,PROJ_EN
 let scrollY=0,targetScroll=0;
 // At the start of About, upward scrolling hands control back to the scene.
 function panelOwnsInput(target){
-  return document.getElementById("side-panel").classList.contains("open") ||
-    !!target.closest("#outro.visible,nav,#project-back");
+  return !!target.closest("#outro.visible,nav,#project-back");
 }
 function moveScene(delta){targetScroll=Math.max(0,Math.min(MAX_SCROLL,targetScroll+delta))}
 function routeScroll(target,delta,fromTouch=false){
-  if(document.getElementById("side-panel").classList.contains("open")||target.closest("nav,#project-back"))return false;
+  if(target.closest("nav,#project-back"))return false;
   if(target.closest("#outro")&&document.getElementById("outro").classList.contains("visible")){
     const panel=document.getElementById("outro-inner");
     // Finish the fade before the panel scrolls, so its text never slides by half-covered.
@@ -426,7 +348,7 @@ window.addEventListener("wheel",e=>{
 let sceneTouch=null,gestureMoved=false;
 window.addEventListener("touchstart",e=>{
   sceneTouch=null;gestureMoved=false;
-  if(e.touches.length!==1||document.getElementById("side-panel").classList.contains("open")||e.target.closest("nav,#project-back"))return;
+  if(e.touches.length!==1||e.target.closest("nav,#project-back"))return;
   const touch=e.touches[0];
   sceneTouch={id:touch.identifier,x:touch.clientX,y:touch.clientY,startX:touch.clientX,startY:touch.clientY};
 },{passive:true});
@@ -446,18 +368,32 @@ window.addEventListener("touchcancel",()=>{sceneTouch=null},{passive:true});
 window.addEventListener("click",e=>{
   if(gestureMoved){gestureMoved=false;e.preventDefault();e.stopImmediatePropagation()}
 },true);
-function portfolioNavigate(destination,event){if(event){event.preventDefault();event.stopPropagation()}closePanel();if(destination==="top")targetScroll=0;else if(destination==="projects")targetScroll=INTRO_END+10;else{targetScroll=MAX_SCROLL;const panel=document.getElementById("outro-inner"),section=document.getElementById(destination);if(section)panel.scrollTop=section.offsetTop-parseFloat(getComputedStyle(panel).paddingTop)}}
-window.portfolioNavigate=portfolioNavigate;const projectBack=document.getElementById("project-back");
+// Scroll position where floor i faces the camera (the top floor, i=N-1, comes first).
+// The +10 keeps the top floor just past the intro, where the floor card UI switches on.
+function floorScroll(i){return Math.max(INTRO_END+10,INTRO_END+easeInv((N-1-i)/(N-1))*PROJ_LEN)}
+function portfolioNavigate(destination,event){if(event){event.preventDefault();event.stopPropagation()}const floor=PROJECTS.findIndex(p=>p.slug===destination);
+  // Coming back from a floor page: land on that floor straight away instead of flying down to it.
+  if(floor>=0){targetScroll=scrollY=floorScroll(floor);return}
+  if(destination==="top")targetScroll=0;else if(destination==="projects")targetScroll=INTRO_END+10;else{targetScroll=MAX_SCROLL;const panel=document.getElementById("outro-inner"),section=document.getElementById(destination);if(section)panel.scrollTop=section.offsetTop-parseFloat(getComputedStyle(panel).paddingTop)}}
+window.portfolioNavigate=portfolioNavigate;
+// Back from a floor page: jump to that floor before the first frame, so the intro never flashes.
+if(PROJECTS.some(p=>"#"+p.slug===location.hash))portfolioNavigate(location.hash.slice(1));
+const projectBack=document.getElementById("project-back");
 const cursorEl=document.getElementById("cursor"),mouse=new THREE.Vector2(-9,-9);
-const mobileProjectCard=document.getElementById("mobile-project-card");let mobileProjectIndex=0;mobileProjectCard.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();openPanel(mobileProjectIndex)});
+const mobileProjectCard=document.getElementById("mobile-project-card");let mobileProjectIndex=0;mobileProjectCard.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();openFloor(mobileProjectIndex)});
 window.addEventListener("mousemove",e=>{cursorEl.style.left=e.clientX+"px";cursorEl.style.top=e.clientY+"px";mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1});
-function openPanel(i){const p=PROJECTS[i];document.getElementById("sp-index").textContent=(i+1)+" of "+N;const titleEl=document.getElementById("sp-title");titleEl.textContent=p.title;titleEl.className="glitch-in";setTimeout(()=>titleEl.className="",350);document.getElementById("sp-sub").textContent=p.sub;document.getElementById("sp-desc").textContent=p.desc;document.getElementById("sp-tags").innerHTML=p.tags.map(t=>'<span class="sp-tag">'+t+"</span>").join("");document.getElementById("sp-link").href=p.url;document.getElementById("sp-inner").scrollTop=0;document.getElementById("side-panel").classList.add("open")}
-function closePanel(){document.getElementById("side-panel").classList.remove("open")}window.closePanel=closePanel;document.getElementById("sp-back").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();closePanel()});
-window.addEventListener("click",e=>{if(document.getElementById("side-panel").contains(e.target))return;if(e.target.closest(".portfolio-control")||e.target.closest("nav")||e.target.closest("#outro"))return;mouse.set((e.clientX/innerWidth)*2-1,-(e.clientY/innerHeight)*2+1);raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length)openPanel(hits[0].object.userData.projectIndex)});
+// Open a floor's page. The tower's own history entry is first tagged with the floor's #hash,
+// so the browser's back button (or the page's "back to the tower") returns to the same floor.
+function openFloor(i){const p=PROJECTS[i];history.replaceState(null,"","#"+p.slug);
+  if(REDUCED_MOTION){location.href=p.url;return}
+  document.documentElement.style.transition="opacity .25s";document.documentElement.style.opacity="0";setTimeout(()=>{location.href=p.url},250)}
+// A page restored from the back/forward cache keeps the faded-out state; undo it.
+addEventListener("pageshow",()=>{document.documentElement.style.opacity=""});
+window.addEventListener("click",e=>{if(e.target.closest(".portfolio-control")||e.target.closest("nav")||e.target.closest("#outro"))return;mouse.set((e.clientX/innerWidth)*2-1,-(e.clientY/innerHeight)*2+1);raycaster.setFromCamera(mouse,camera);const hits=raycaster.intersectObjects(stepCards);if(hits.length)openFloor(hits[0].object.userData.projectIndex)});
 const raycaster=new THREE.Raycaster();
 window.addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 const heroEl=document.getElementById("hero"),outroEl=document.getElementById("outro"),clock=new THREE.Clock();let hoveredCard=null;
-window.addEventListener("keydown",e=>{if(e.key==="Escape"){closePanel();return}if(panelOwnsInput(e.target)||e.target.closest("button,a,input,textarea,select"))return;const stepFwd=e.key==="ArrowDown"||e.key==="ArrowRight"||e.key==="j",stepBack=e.key==="ArrowUp"||e.key==="ArrowLeft"||e.key==="k";if(stepFwd||stepBack){e.preventDefault();const projT=Math.max(0,Math.min(1,(targetScroll-INTRO_END)/PROJ_LEN));let idx=Math.round(ease(projT)*(N-1));if(targetScroll<INTRO_END)idx=-1;idx+=stepFwd?1:-1;if(idx<0){targetScroll=0;return}if(idx>N-1){targetScroll=MAX_SCROLL;return}targetScroll=INTRO_END+easeInv(idx/(N-1))*PROJ_LEN;return}if(e.key==="Enter"){if(targetScroll<=INTRO_END||targetScroll>PROJ_END)return;const projT=Math.max(0,Math.min(1,(targetScroll-INTRO_END)/PROJ_LEN));openPanel(N-1-Math.round(ease(projT)*(N-1)))}});
+window.addEventListener("keydown",e=>{if(panelOwnsInput(e.target)||e.target.closest("button,a,input,textarea,select"))return;const stepFwd=e.key==="ArrowDown"||e.key==="ArrowRight"||e.key==="j",stepBack=e.key==="ArrowUp"||e.key==="ArrowLeft"||e.key==="k";if(stepFwd||stepBack){e.preventDefault();const projT=Math.max(0,Math.min(1,(targetScroll-INTRO_END)/PROJ_LEN));let idx=Math.round(ease(projT)*(N-1));if(targetScroll<INTRO_END)idx=-1;idx+=stepFwd?1:-1;if(idx<0){targetScroll=0;return}if(idx>N-1){targetScroll=MAX_SCROLL;return}targetScroll=INTRO_END+easeInv(idx/(N-1))*PROJ_LEN;return}if(e.key==="Enter"){if(targetScroll<=INTRO_END||targetScroll>PROJ_END)return;const projT=Math.max(0,Math.min(1,(targetScroll-INTRO_END)/PROJ_LEN));openFloor(N-1-Math.round(ease(projT)*(N-1)))}});
 function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();scrollY+=(targetScroll-scrollY)*0.06;const heroT=Math.min(1,scrollY/INTRO_LEN),projT=Math.max(0,Math.min(1,(scrollY-INTRO_END)/PROJ_LEN)),outroT=Math.max(0,Math.min(1,(scrollY-PROJ_END)/OUTRO_LEN));heroEl.style.opacity=String(1-heroT);outroEl.style.opacity=String(outroT);outroEl.classList.toggle("visible",outroT>0.5);projectBack.classList.toggle("visible",scrollY>INTRO_END*.72&&outroT<.1);let camAngle,camRadius,camY,lookY;/* ORBIT0 is where the descent starts. Every phase is written to begin
    exactly where the previous one ended, so no frame ever jumps. */
 const ORBIT0=Math.PI/2+stairGroup.rotation.y;
@@ -468,11 +404,11 @@ if(scrollY<=INTRO_END){const topY=STAIR_TOP+2,eh=ease(heroT);camAngle=0.1+(ORBIT
   document.documentElement.classList.add("static-mode");
   document.getElementById("boot").classList.add("done");
   const projects=document.createElement("section");projects.id="fallback-projects";
-  const heading=document.createElement("h2");heading.textContent="Projects";projects.appendChild(heading);
-  PROJECTS.forEach(project=>{
+  const heading=document.createElement("h2");heading.textContent="Floors";projects.appendChild(heading);
+  [...PROJECTS].reverse().forEach(project=>{
     const article=document.createElement("article"),title=document.createElement("h3"),description=document.createElement("p"),link=document.createElement("a");
-    title.textContent=project.title;description.textContent=project.desc;
-    link.textContent="View source →";link.href=project.url;link.className="contact-link";
+    article.id=project.slug;title.textContent=project.title;description.textContent=project.desc;
+    link.textContent="Open →";link.href=project.url;link.className="contact-link";
     article.append(title,description,link);projects.appendChild(article);
   });
   document.getElementById("hero").after(projects);
@@ -481,6 +417,8 @@ if(scrollY<=INTRO_END){const topY=STAIR_TOP+2,eh=ease(heroT);camAngle=0.1+(ORBIT
     document.getElementById(destination==="top"?"hero":destination==="projects"?"fallback-projects":destination).scrollIntoView({behavior:REDUCED_MOTION?"auto":"smooth"});
   };
 }
+// After load, so the browser's own jump to the #anchor does not override it.
+if(location.hash.length>1)addEventListener("load",()=>requestAnimationFrame(()=>window.portfolioNavigate(location.hash.slice(1))));
 </script>
 </body>
 </html>
