@@ -24,6 +24,7 @@ h1{font-size:clamp(40px,8vw,64px);font-weight:700;letter-spacing:-.03em;line-hei
 .item h3{font-size:18px;font-weight:500;color:#cfe6ff;margin-bottom:4px;letter-spacing:.01em}
 .item .meta{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;color:rgba(131,199,255,0.85);margin-bottom:8px}
 .item p{font-size:14px;line-height:1.7}
+.item p+p{margin-top:10px}
 .item .tech{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.06em;line-height:1.9;color:rgba(131,199,255,0.6);margin-top:10px}
 .link{display:inline-block;margin-top:12px;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.18em;color:#83c7ff;text-decoration:none;padding:11px 18px;border:1px solid rgba(131,199,255,0.35);transition:background .2s,border-color .2s,transform .2s}
 .link:hover{background:rgba(131,199,255,0.08);border-color:rgba(131,199,255,0.7);transform:translateY(-3px)}

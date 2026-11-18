@@ -229,6 +229,7 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
       <p class="outro-lede">I like building interactive things, but not everyone has time to explore a portfolio. Here is the short version:</p>
       <ul class="sum-list">
         <li>I build sensor units: circuit and PCB design, analog, sensors on Raspberry Pis, firmware, and the dashboard on top.</li>
+        <li>I designed a 6-layer hardware security module: STM32, secure element, tamper detection, isolated power, secure boot and encrypted USB-C.</li>
         <li>I write low-level C++: a lock-free queue, a sharded allocator, an epoll HTTP server, a vectorized query engine and a small JIT compiler.</li>
         <li>My fixes are merged into Qualcomm's eld linker and spdlog.</li>
         <li>ICPC 2026 Asia regionalist (Amritapuri), Codeforces Expert with a max of 1604, and 1000+ problems solved.</li>
@@ -255,7 +256,7 @@ html.static-mode,html.static-mode body{height:auto;overflow:auto}
     </div>
     <div class="outro-section">
       <div class="outro-label">Stack</div>
-      <div class="skill-line"><span class="k">Hardware</span><span class="v">PCB design · analog · I²C sensors · Raspberry Pi · FreeRTOS · OpenCV</span></div>
+      <div class="skill-line"><span class="k">Hardware</span><span class="v">KiCad · 6-layer PCB design · STM32 · analog · I²C sensors · Raspberry Pi · FreeRTOS · OpenCV</span></div>
       <div class="skill-line"><span class="k">Languages</span><span class="v">C++20 · Go · Python · TypeScript · SQL</span></div>
       <div class="skill-line"><span class="k">Systems</span><span class="v">epoll · mmap · sendfile · std::atomic · ASan · TSan · perf</span></div>
       <div class="skill-line"><span class="k">Infra</span><span class="v">Kafka · ClickHouse · PostgreSQL · Redis · Docker · Grafana</span></div>
@@ -292,7 +293,7 @@ const PROJECTS=[
 {slug:"research",title:"Research",sub:"Questions that don't have answers yet",desc:"Real-time scheduling with FreeRTOS on a Raspberry Pi 4, batched updates to DomLock hierarchies, and a heap pattern that runs 5.6x slower.",tags:["real-time","concurrency","data structures"],url:"research.html"},
 {slug:"competitive-programming",title:"Competitive Programming",sub:"ICPC 2026 regionalist · Codeforces Expert",desc:"ICPC 2026 Asia regionalist at Amritapuri, Codeforces max 1604 (Expert), 1000+ problems solved.",tags:["1604 max","1000+ solved","ICPC Amritapuri"],url:"competitive-programming.html"},
 {slug:"low-level",title:"Low Level",sub:"Merged into Qualcomm's linker and spdlog",desc:"Merged fixes in Qualcomm's eld linker and spdlog. A JIT compiler, a sharded allocator, a lock-free queue, an epoll HTTP server and a vectorized query engine.",tags:["C++20","lock-free","JIT"],url:"low-level.html"},
-{slug:"electronics",title:"Electronics & Hardware",sub:"Sensor units, from circuit board to dashboard",desc:"I build sensor units: circuit and PCB design, analog, sensors on Raspberry Pis, firmware and the dashboard on top. Plus a point-to-listen museum case and bare-metal FreeRTOS on a Pi 4.",tags:["sensor units","PCB design","Raspberry Pi"],url:"electronics.html"},
+{slug:"electronics",title:"Electronics & Hardware",sub:"Sensor units, from circuit board to dashboard",desc:"I build sensor units: circuit and PCB design, analog, sensors on Raspberry Pis, firmware and the dashboard on top. Plus a point-to-listen museum case and bare-metal FreeRTOS on a Pi 4.",tags:["sensor units","6-layer PCBs","STM32"],url:"electronics.html"},
 ];
 try {
 const renderer=new THREE.WebGLRenderer({canvas:document.getElementById("canvas"),antialias:true});
