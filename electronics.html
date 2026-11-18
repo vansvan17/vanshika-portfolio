@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>electronics · vanshika turakhia</title>
-<meta name="description" content="Vanshika Turakhia's hardware work: PCB design, analog electronics, and a point-to-listen museum case built on a Raspberry Pi 4 with OpenCV."/>
+<meta name="color-scheme" content="dark"/>
+<!-- dark from the very first paint, before domain.css arrives -->
+<style>html,body{background:#0f1012}</style>
+<title>electronics &amp; hardware · vanshika turakhia</title>
+<meta name="description" content="Vanshika Turakhia builds sensor units: circuit and PCB design, analog, sensors on Raspberry Pis, firmware and dashboards. Also a point-to-listen museum case and bare-metal FreeRTOS on a Pi 4."/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='9' fill='%230f1012'/%3E%3Cpath d='M10 13h11l11 30 11-30h11L38 52H26Z' fill='%2383c7ff'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="domain.css"/>
@@ -18,23 +21,42 @@
   </div>
 </nav>
 <main>
-  <div class="kicker">Floor 5 / 5</div>
-  <h1>Electronics</h1>
-  <p class="intro">Most of my work lives on servers. This part you can touch. I design PCBs and analog circuits, and build things around Raspberry Pis and cameras.</p>
+  <div class="kicker">Floor 1 / 5</div>
+  <h1>Electronics &amp; hardware</h1>
+  <p class="intro">I build sensor units: the circuit, the board, the code running on it, and the dashboard that turns the readings into something you can use.</p>
 
   <section class="section">
+    <div class="label">Sensor units</div>
+    <div class="item">
+      <h3>What I build</h3>
+      <div class="meta">Design to working unit</div>
+      <p>Small units that sense a room or an object and report what they see: heat, CO₂ and air quality, temperature and humidity, sound level, or a camera view. I take one from a parts list and circuit to a working unit, with the firmware, calibration, logging and a dashboard or CSV export on top.</p>
+      <div class="tech">PCB design · analog circuits · I²C sensors · thermal arrays · CO₂ / temperature / humidity · sound level · Raspberry Pi · Python · OpenCV · dashboards and data export</div>
+      <a class="link" href="mailto:vanshikaturakhia@gmail.com?subject=Sensor%20unit">Building a sensor unit? Email me &rarr;</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="label">Built</div>
     <div class="item">
       <h3>Point-to-listen museum case</h3>
       <div class="meta">Museum exhibit · in progress</div>
       <p>A display case you talk to by pointing. Hold a finger over an object for three seconds and its story plays in the headphones, while the screen under the glass glows beneath it. No buttons, no touchscreen: a camera above the case watches for your finger, and a passing hand does nothing.</p>
       <div class="tech">Raspberry Pi 4 · Camera Module 3 NoIR · Python · OpenCV · background subtraction, fingertip = the point reaching farthest in · camera-to-TV calibration · ~11 fps at 960×540</div>
     </div>
+    <div class="item">
+      <h3>FreeRTOS on a bare Raspberry Pi 4</h3>
+      <div class="meta">Embedded · AArch64 · no Linux underneath</div>
+      <p>A real-time OS running straight on the Pi's hardware. The test images wouldn't boot until I traced it to how the image was laid out in memory: the Pi's firmware loads it at a fixed address and expects the start code right after a specific header. Fixed that, then added a log in RAM that survives reboots and cycle-counter timing for every task.</p>
+      <div class="tech">FreeRTOS · AArch64 · Pi 4 firmware and one-shot test boots · RAM log across reboots · cycle-counter instrumentation · L2 cache interference experiments</div>
+      <a class="link" href="research.html">The research behind it &rarr;</a>
+    </div>
   </section>
 
   <footer class="floors">
-    <a href="security.html">&uarr; Floor 4: cybersecurity</a>
-    <a class="back" href="index.html#electronics">&larr; Back to the tower</a>
     <span></span>
+    <a class="back" href="index.html#electronics">&larr; Back to the tower</a>
+    <a href="low-level.html">Floor 2: low level &darr;</a>
   </footer>
 </main>
 </body>

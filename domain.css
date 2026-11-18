@@ -3,6 +3,9 @@
 *{margin:0;padding:0;box-sizing:border-box}
 *,*::before,*::after{text-transform:lowercase}
 html,body{background:#0f1012}
+/* Browsers that support it crossfade between the tower and the floor pages. */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.35s}
 body{font-family:"Space Grotesk",sans-serif;color:rgba(218,233,248,0.88);min-height:100vh}
 /* faint scanlines, like the tower's crt overlay */
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(131,199,255,0.018) 3px,rgba(131,199,255,0.018) 4px)}
