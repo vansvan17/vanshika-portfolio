@@ -7,7 +7,21 @@
 <!-- dark from the very first paint, before domain.css arrives -->
 <style>html,body{background:#0f1012}</style>
 <title>electronics &amp; hardware · vanshika turakhia</title>
-<meta name="description" content="Vanshika Turakhia builds sensor units: circuit and PCB design, analog, sensors on Raspberry Pis, firmware and dashboards. Also a point-to-listen museum case and bare-metal FreeRTOS on a Pi 4."/>
+<meta name="description" content="Sensor units and boards by Vanshika Turakhia: a 6-layer STM32 hardware security module, PCB design, analog, firmware and dashboards."/>
+<link rel="canonical" href="https://vanshikaturakhia.dev/electronics"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Vanshika Turakhia"/>
+<meta property="og:title" content="Electronics &amp; hardware · Vanshika Turakhia"/>
+<meta property="og:description" content="Sensor units and boards by Vanshika Turakhia: a 6-layer STM32 hardware security module, PCB design, analog, firmware and dashboards."/>
+<meta property="og:url" content="https://vanshikaturakhia.dev/electronics"/>
+<meta property="og:image" content="https://vanshikaturakhia.dev/og.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Vanshika Turakhia: sensor units, from circuit board to dashboard"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Electronics &amp; hardware · Vanshika Turakhia"/>
+<meta name="twitter:description" content="Sensor units and boards by Vanshika Turakhia: a 6-layer STM32 hardware security module, PCB design, analog, firmware and dashboards."/>
+<meta name="twitter:image" content="https://vanshikaturakhia.dev/og.png"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='9' fill='%230f1012'/%3E%3Cpath d='M10 13h11l11 30 11-30h11L38 52H26Z' fill='%2383c7ff'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="domain.css"/>
@@ -33,6 +47,17 @@
       <p>Small units that sense a room or an object and report what they see: heat, CO₂ and air quality, temperature and humidity, sound level, or a camera view. I take one from a parts list and circuit to a working unit, with the firmware, calibration, logging and a dashboard or CSV export on top.</p>
       <div class="tech">PCB design · analog circuits · I²C sensors · thermal arrays · CO₂ / temperature / humidity · sound level · Raspberry Pi · Python · OpenCV · dashboards and data export</div>
       <a class="link" href="mailto:vanshikaturakhia@gmail.com?subject=Sensor%20unit">Building a sensor unit? Email me &rarr;</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="label">Board design</div>
+    <div class="item">
+      <h3>Hardware security module</h3>
+      <div class="meta">6-layer PCB · STM32 · secure element</div>
+      <p>A board that keeps cryptographic keys where software can't get at them. An STM32 runs the show, a secure element holds the keys, tamper-detection circuitry watches for interference, and the sensitive parts sit on their own isolated power domains. The firmware checks its own signature at boot and only talks to the host over encrypted USB-C.</p>
+      <p>I did all of it: the schematic, routing the six layers, signal-integrity analysis and the firmware. Then I validated the design in simulation and on a hardware-in-the-loop test rig I built for it.</p>
+      <div class="tech">KiCad · 6 layers · STM32 · secure element · tamper detection · isolated power domains · hardware-backed key storage · secure boot · encrypted USB-C · FreeRTOS · C/C++ · signal-integrity analysis · hardware-in-the-loop tests</div>
     </div>
   </section>
 
